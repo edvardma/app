@@ -1,12 +1,3 @@
-<img src='https://github.com/WataruMaeda/react-native-boilerplate/blob/master/__DELELE_ME__/banner.svg' width='400'>
-
-<img src='https://github.com/WataruMaeda/react-native-boilerplate/blob/master/__DELELE_ME__/demo.gif' width='32%'>
-
-- [Expo link](https://expo.io/@wataru/react-native-boilerplate)
-
-## About
-
-We spend a large amount of time to setup a project; changing file structure, installing libraries, create reusable components and so on. The purpose of using the project is to minimize the redundant effort to setup a project from scratch. In the boilerplate, it contains only commonly-used libraries and the all setup done for you.
 
 ## What's included
 
@@ -54,20 +45,3 @@ It's very important to keep code clean to maintain readability and productivity.
 - [jest](https://jestjs.io/)
 - [pre commit](https://github.com/observing/pre-commit)
 
-## How to Use
-
-1. Download zip or click "Use this template"
-2. Update `app.json`
-
-```
- "name": "your-app-name",
- "slug": "your-app-name",
-```
-
-3. `yarn install` or `npm install`
-4. If you haven't setup expo, please follow the [instruction](https://expo.io/learn) to complete setup
-5. In terminal, `expo start`
-
-## Licence
-
-This project is available under the MIT license. See the [LICENSE](https://github.com/WataruMaeda/react-native-boilerplate/blob/master/LICENSE) file for more info.
