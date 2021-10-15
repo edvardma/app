@@ -8,8 +8,10 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   user: {
     name: 'Demo User',
-    status: 'Low Risk No Symptoms',
+    status: 'happy',
     email: 'demo@demo.com',
+    state: 'demo@demo.com',
+    passportNumber: '6487941948',
   },
 }
 
@@ -20,10 +22,18 @@ const initialState = {
 const appSlice = createSlice({
   name: 'app',
   initialState,
-  reducers: {},
+  reducers: {
+    setupUser: (state, { payload }) => {
+      state.user.name = payload.name
+      state.user.status = payload.status
+      state.user.email = payload.email
+      state.user.state = payload.state
+      state.user.passportpassNoNumber = payload.passportpassNoNumber
+    },
+  },
 })
 
 export const { action } = appSlice
-// export const {} = appSlice.actions
+export const { setupUser } = appSlice.actions
 
 export default appSlice.reducer

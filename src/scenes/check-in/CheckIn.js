@@ -1,40 +1,35 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import {
-  StyleSheet, View, Text, Image,
+  StyleSheet, View, Text, Image, ScrollView,
 } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { colors } from 'theme'
-import { Button } from 'react-native-elements'
+import Button from 'components/Button'
 import { BarCodeScanner } from 'expo-barcode-scanner'
+import { useSelector, useDispatch } from 'react-redux'
+import { saveScanned } from 'slices/checkin.slice'
+import CheckInCard from 'components/CheckInCard'
+import CheckInHistoryCard from 'components/CheckInHistoryCard'
+import Svg from 'components/Svg'
+import { persistor } from 'utils/store'
+// import { useSelector } from 'react-redux'
+//   const scans = useSelector((state) => state.checkin.scans)
+import uuid from 'react-native-uuid'
 
 const styles = StyleSheet.create({
-  root: {
-    height: '100%',
-  },
   topContainer: {
-    height: '30%',
+    height: 200,
     backgroundColor: colors.lightBlue,
-  },
-  shadow: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.37,
-    shadowRadius: 7.49,
-
-    elevation: 12,
   },
 })
 
-const Details = () => {
+const Details = ({ navigation }) => {
+  const dispatch = useDispatch()
   const [hasPermission, setHasPermission] = useState(null)
   const [scanned, setScanned] = useState(false)
-  const [scannedData, setScannedData] = useState(null)
   const [scanner, setScanner] = useState(false)
-  const { name, status, email } = useSelector((state) => state.app.user)
+  const { status, passportNumber } = useSelector((state) => state.app.user)
+  const { scans } = useSelector((state) => state.checkin)
   useEffect(() => {
     (async () => {
       const { _status } = await BarCodeScanner.requestPermissionsAsync()
@@ -42,23 +37,32 @@ const Details = () => {
     })()
   }, [])
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = ({ data }) => {
+    if (!data.toString().includes('mysejahtera.malaysia.gov.my')) {
+      navigation.navigate('InvalidQR')
+      return
+    }
     setScanned(true)
     setScanner(false)
-    setScannedData(data)
-    // eslint-disable-next-line no-alert
-    alert(type)
-    alert(scannedData)
+    const location = data
+      .split('=')[2]
+      .split('&')[0]
+      .replace(/_/g, ' ')
+      .replace(/-/g, ' ')
+
+    navigation.navigate('CheckInSuccess', { location })
+    dispatch(
+      saveScanned({
+        id: uuid.v4(),
+        location,
+        date: new Date(),
+        checkedOut: false,
+      }),
+    )
   }
 
-  // if (hasPermission === null) {
-  //   return <Text>Requesting for camera permission</Text>
-  // }
-  // if (hasPermission === false) {
-  //   return <Text>No access to camera</Text>
-  // }
   return (
-    <View style={styles.root}>
+    <>
       {scanner ? (
         <BarCodeScanner
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
@@ -66,46 +70,86 @@ const Details = () => {
         />
       ) : (
         <>
-          <View style={[styles.topContainer]} />
-          <View style={[tailwind('w-10/12 -mt-36 h-96 self-center')]}>
-            <View
-              style={[
-                tailwind(
-                  'h-full mb-12 w-full self-center bg-white p-5 pb-20 bg-white rounded-md',
-                ),
-                styles.shadow,
-              ]}
-            >
-              <Image
-                source={require('./scan.png')}
-                style={{ resizeMode: 'cover', width: '100%', height: '100%' }}
-              />
-
-              <View style={tailwind('mb-12 ')}>
-                <Text style={tailwind('text-gray-500 font-bold self-center')}>
-                  {name}
-                </Text>
-                <Text style={tailwind('text-gray-500 font-bold  self-center')}>
+          <ScrollView style={{ marginBottom: 65 }}>
+            <View style={[styles.topContainer]} />
+            <View style={[tailwind('w-full -mt-48 flex')]}>
+              <View style={[tailwind('self-center ')]}>
+                <Image
+                  source={require('./checkin-icon.png')}
+                  style={{ resizeMode: 'cover', width: 120, height: 120 }}
+                />
+              </View>
+              <View style={tailwind('pb-12 ')}>
+                <Text style={tailwind('text-white font-bold pt-3 self-center')}>
                   {status}
                 </Text>
-                <Text style={tailwind('text-gray-500 self-center')}>
-                  {email}
+                <Text style={tailwind('text-white self-center')}>
+                  {passportNumber}
                 </Text>
               </View>
             </View>
+            <View style={tailwind('w-full flex flex-col ')}>
+              <CheckInCard icon={<Svg name="virus" />} bgColor="#51b6b8">
+                <View style={tailwind('flex flex-col content-center')}>
+                  <Text style={tailwind('text-white  pl-2 ')}>
+                    COVID-19 Risk Status
+                  </Text>
+                  <Text style={tailwind('text-white text-lg font-bold pl-2 ')}>
+                    Low Risk, No Symptom
+                  </Text>
+                </View>
+              </CheckInCard>
 
+              <CheckInCard icon={<Svg name="vaccine" />} bgColor="#51b6b8">
+                <View style={tailwind('flex flex-col content-center')}>
+                  <Text style={tailwind('text-white pl-2 ')}>
+                    Covid-19 Vaccination Status
+                  </Text>
+                  <Text style={tailwind('text-white text-lg font-bold pl-2 ')}>
+                    Vaccinated
+                  </Text>
+                </View>
+              </CheckInCard>
+              {scans.map((item, index) => (
+                <CheckInHistoryCard
+                  key={`history-item-${index}`}
+                  location={item.location}
+                  date={item.date}
+                  id={item.id}
+                  checkedOut={item.checkedOut}
+                />
+              ))}
+            </View>
+          </ScrollView>
+          <View style={tailwind('absolute bottom-0 w-full bg-white')}>
             <Button
-              style={tailwind('pt-20')}
               title="Check-in"
-              onPress={() => {
-                setScanned(false)
-                setScanner(true)
+              color="white"
+              style={tailwind('m-5 w-11/12')}
+              backgroundColor={colors.lightBlue}
+              onPress={async () => {
+                // setScanned(false)
+                // setScanner(true)
+                dispatch(
+                  saveScanned({
+                    location: 'VENG SEDFCOSP SDFKSDF PDSOFDKSF',
+                    id: uuid.v4(),
+                    date: new Date(),
+                    checkedOut: false,
+                  }),
+                )
+                setTimeout(async () => {
+                  await persistor.purge()
+                }, 500)
+                alert('done')
+
+                // navigation.navigate('InvalidQR')
               }}
             />
           </View>
         </>
       )}
-    </View>
+    </>
   )
 }
 export default Details

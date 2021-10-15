@@ -8,17 +8,14 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import tailwind from 'tailwind-rn'
+import Button from 'components/Button'
 import { colors } from 'theme'
 import { useSelector, useDispatch } from 'react-redux'
 import { setActiveCategory } from 'slices/statics.slice'
 
 const styles = StyleSheet.create({
-  root: {
-    height: '100%',
-    width: '100%',
-  },
   topContainer: {
-    height: '30%',
+    height: 152,
     width: '100%',
     backgroundColor: colors.lightBlue,
   },
@@ -40,92 +37,116 @@ const styles = StyleSheet.create({
 
     elevation: 12,
   },
-  'mx-auto': {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
 })
 
 const Statics = () => {
   const dispatch = useDispatch()
 
   const categories = useSelector((state) => state.statics.categories)
+  const [activeCat, setActiveCat] = React.useState('updates')
   const cards = useSelector((state) => state.statics.statics)
 
-  const Chip = ({ label, active, index }) => (
+  const Chip = ({ label, id }) => (
     <TouchableOpacity
       onPress={() => {
-        dispatch(setActiveCategory(index))
+        setActiveCat(id)
       }}
     >
       <View
         style={[
-          styles.shadow,
           tailwind(
-            `flex h-10 w-28 items-center m-1 font-medium py-3 px-2 bg-white rounded-full ${
-              active
+            `flex flex-row items-center h-8 items-center font-medium  px-4 bg-white rounded-full ${
+              activeCat === id
                 ? 'bg-white text-blue-500'
                 : 'bg-transparent text-white border-white border'
             }`,
           ),
+          { marginLeft: 7, marginRight: 7 },
         ]}
       >
         <Text
           style={[
-            tailwind(`${active ? 'text-blue-500' : 'text-white'}`),
-            styles['mx-auto'],
+            tailwind(
+              `${
+                activeCat === id ? 'text-blue-500' : 'text-white'
+              } font-bold text-sm`,
+            ),
           ]}
         >
-          {label.toUpperCase()}
+          {label}
         </Text>
       </View>
     </TouchableOpacity>
   )
-  const Card = ({ title, content }) => (
+  const Card = ({
+    title, content, number, color, buttonTitle,
+  }) => (
     <View
       style={[
-        tailwind('max-w-md py-4 mx-4 px-8 bg-white rounded-lg my-5'),
+        {
+          backgroundColor: color,
+        },
+        tailwind('py-4 mx-2 px-8 rounded-lg my-5 h-56'),
         styles.shadow,
       ]}
     >
       <View>
-        <Text style={tailwind('text-gray-800 text-3xl font-semibold')}>
+        <Text style={tailwind('text-white text-center text-xl font-semibold')}>
           {title}
         </Text>
-        <Text style={tailwind('mt-2 text-gray-600')}>{content}</Text>
+        <Text style={tailwind('mt-2 text-center text-white')}>{content}</Text>
+        <Text
+          style={[tailwind('mt-5 text-center text-white'), { fontSize: 39 }]}
+        >
+          {number}
+        </Text>
+        {buttonTitle !== null && (
+        <Button
+          style={tailwind('mt-5')}
+          title={buttonTitle}
+          backgroundColor="white"
+          color={color === 'black' ? 'red' : color}
+        />
+        )}
       </View>
     </View>
   )
 
   return (
-    <View style={styles.root}>
-      <View style={styles.topContainer} />
-      <View
-        style={[
-          tailwind(' h-full w-full '),
-          styles.mainContainer,
-          styles['mx-auto'],
-        ]}
-      >
+    <ScrollView
+      vertical
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      style={[styles.cards, tailwind('w-full')]}
+    >
+      <View style={[styles.topContainer, tailwind('-mt-4')]} />
+      <View style={[tailwind('-mt-32  w-full '), styles.mainContainer]}>
         <ScrollView
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           horizontal
-          style={[styles.chips, tailwind('-mt-44 -mb-32 flex-row')]}
+          style={[styles.chips, tailwind(' flex-row')]}
         >
-          {categories.map((cat, index) => (
-            <Chip index={index} active={cat.active} label={cat.label} />
+          {categories.map((cat) => (
+            <Chip key={`chip${cat.id}`} id={cat.id} label={cat.label} />
           ))}
         </ScrollView>
 
-        <ScrollView
-          vertical
-          style={[styles.cards, styles['mx-auto'], tailwind(' py-4')]}
-        >
-          {cards.map((card) => (
-            <Card title={card.title} content={card.content} />
-          ))}
-        </ScrollView>
+        {cards[activeCat].map((card, index) => (
+          <React.Fragment key={`card${index}`}>
+            {card.type === 'card' && (
+              <Card
+                title={card.title}
+                buttonTitle={card.buttonTitle ? card.buttonTitle : null}
+                color={card.color}
+                content={card.description}
+                number={card.number}
+              />
+            )}
+          </React.Fragment>
+        ))}
       </View>
-    </View>
+    </ScrollView>
   )
 }
 

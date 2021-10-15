@@ -24,6 +24,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'react/prop-types': 'off',
     'max-len': 'off',
+    'react/no-array-index-key': 'off',
     'global-require': 'off',
     'no-param-reassign': 'off',
     'no-console': 'off',

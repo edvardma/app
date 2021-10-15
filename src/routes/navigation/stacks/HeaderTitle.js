@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, Text } from 'react-native'
+import { fonts } from 'theme'
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 19,
+    fontSize: 28,
     color: 'white',
+    fontFamily: fonts.Avenir.black,
   },
 })
 

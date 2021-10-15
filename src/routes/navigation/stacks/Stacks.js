@@ -3,8 +3,12 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { colors } from 'theme'
 import Home from 'scenes/home'
 import Profile from 'scenes/profile'
+import SetupUser from 'scenes/profile/SetupUser'
 import Statics from 'scenes/statics'
 import CheckIn from 'scenes/check-in'
+import InvalidQR from 'scenes/check-in/InvalidQR'
+import CheckInSuccess from 'scenes/check-in/CheckInSuccess'
+import RefreshStatusButton from 'components/RefreshStatusButton'
 import HeaderTitle from './HeaderTitle'
 
 // ------------------------------------
@@ -33,8 +37,8 @@ export const HomeNavigator = () => (
       name="Home"
       component={Home}
       options={() => ({
-        title: 'Home',
-        headerTitle: () => <HeaderTitle title="Home" />,
+        title: 'MySejahtera',
+        headerTitle: () => <HeaderTitle title="MySejahtera" />,
       })}
     />
   </Stack.Navigator>
@@ -54,6 +58,15 @@ export const ProfileNavigator = () => (
         headerTitle: () => <HeaderTitle title="Profile" />,
       })}
     />
+
+    <Stack.Screen
+      name="Setup"
+      component={SetupUser}
+      options={() => ({
+        title: 'Setup',
+        headerTitle: () => <HeaderTitle title="Setup" />,
+      })}
+    />
   </Stack.Navigator>
 )
 
@@ -68,7 +81,26 @@ export const CheckInNavigator = () => (
       component={CheckIn}
       options={() => ({
         title: 'CheckIn',
-        headerTitle: () => <HeaderTitle title="Check-In" />,
+        headerTitle: () => <HeaderTitle title="Check-in" />,
+        headerRight: () => <RefreshStatusButton />,
+      })}
+    />
+    <Stack.Screen
+      name="InvalidQR"
+      component={InvalidQR}
+      options={() => ({
+        title: '',
+        headerTitle: '',
+      })}
+    />
+
+    <Stack.Screen
+      name="CheckInSuccess"
+      component={CheckInSuccess}
+      options={() => ({
+        headerShown: false,
+        title: '',
+        headerTitle: '',
       })}
     />
   </Stack.Navigator>

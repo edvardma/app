@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { View } from 'react-native'
 import { Provider } from 'react-redux'
-import store from 'utils/store'
+import store, { persistor } from 'utils/store'
 import 'utils/ignore'
+import { NativeBaseProvider } from 'native-base'
+import { PersistGate } from 'redux-persist/integration/react'
 
 // assets
 import { imageAssets } from 'theme/images'
@@ -16,8 +18,12 @@ const App = () => {
   // handler
   const handleLoadAssets = async () => {
     // assets preloading
-    await Promise.all([...imageAssets, ...fontAssets])
-    setDidLoad(true)
+    try {
+      await Promise.all([...imageAssets, ...fontAssets])
+      setDidLoad(true)
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   // lifecycle
@@ -28,9 +34,13 @@ const App = () => {
   // rendering
   if (!didLoad) return <View />
   return (
-    <Provider store={store}>
-      <Router />
-    </Provider>
+    <NativeBaseProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Router />
+        </PersistGate>
+      </Provider>
+    </NativeBaseProvider>
   )
 }
 
