@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 'auto',
     backgroundColor: 'white',
-    borderRadius: 22,
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
   },
   containerHeader: {
     height: '30%',

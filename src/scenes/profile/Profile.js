@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import {
   StyleSheet,
   View,
+  Dimensions,
   Text,
   ScrollView,
   Image,
@@ -13,8 +14,10 @@ import tailwind from 'tailwind-rn'
 import { colors } from 'theme'
 import Svg from 'components/Svg'
 import { Avatar, Button } from 'native-base'
-
+import Moment from 'react-moment'
 import { useSelector } from 'react-redux'
+
+const windowHeight = Dimensions.get('window').height
 
 const styles = StyleSheet.create({
   root: {
@@ -30,7 +33,19 @@ const icons = Array(9)
   .map((v, i) => ({ icon: `main${i + 1}` }))
 
 const Home = ({ navigation }) => {
-  const { name, email, state, passportNumber } = useSelector(
+  const {
+    name,
+    email,
+    state,
+    passportNumber,
+    certificateHospitalName,
+    dose1Date,
+    dose2Date,
+    dose1Batch,
+    dose2Batch,
+    vaccineManufacturer,
+    vaccineFaciality,
+  } = useSelector(
     // eslint-disable-next-line no-shadow
     (state) => state.app.user,
   )
@@ -67,7 +82,7 @@ const Home = ({ navigation }) => {
             <View style={[tailwind('flex flex-col pl-2')]}>
               <Text style={tailwind('pl-1 font-bold text-sm')}>{name}</Text>
               <Text style={tailwind('pl-1 font-thin text-gray-700 text-sm')}>
-                Low risk, No Symptopm
+                Low risk No Symptopm
               </Text>
             </View>
           </View>
@@ -252,6 +267,190 @@ const Home = ({ navigation }) => {
                   }}
                 />
               </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={[
+            {
+              width: 100,
+              height: 90,
+              backgroundColor: 'white',
+              marginRight: 'auto',
+              marginLeft: 'auto',
+              zIndex: 10,
+              borderWidth: 1,
+              borderColor: '#3d3a3a',
+              borderRadius: 999999999,
+            },
+            tailwind('-mb-12'),
+          ]}
+        >
+          <View style={tailwind('pl-2 pt-1')}>
+            <Image
+              source={require('./Lambang_Malaysia.png')}
+              style={{
+                resizeMode: 'cover',
+                width: 85,
+                height: 60,
+                margin: 'auto',
+                marginTop: 8,
+              }}
+            />
+          </View>
+        </View>
+
+        <View
+          style={{
+            width: '95%',
+            height: windowHeight - (windowHeight * 2.1) / 10,
+            backgroundColor: '#FDD875',
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            borderWidth: 1,
+            borderColor: '#3d3a3a',
+            borderRadius: 50,
+          }}
+        >
+          <Text style={tailwind('text-center mt-16 font-bold text-xl')}>
+            COVID-19 VACCINATION
+          </Text>
+          <Text style={tailwind('text-center mt-2 text-lg')}>
+            Digital Certificate
+          </Text>
+
+          <View
+            style={[
+              tailwind('w-11/12 mt-1 bg-black'),
+              { marginLeft: 'auto', marginRight: 'auto', height: 2 },
+            ]}
+          />
+          <Text style={tailwind('text-center mt-1 text-lg')}>
+            {name.toUpperCase()}
+          </Text>
+          <Text style={tailwind('text-center mt-1 text-lg')}>
+            {passportNumber}
+          </Text>
+          <Text style={tailwind('text-center mt-1 text-lg')}>
+            {certificateHospitalName}
+          </Text>
+          <View
+            style={{
+              width: '95%',
+              height: 150,
+              backgroundColor: 'rgba(255, 255, 255,0.6)',
+              marginRight: 'auto',
+              marginLeft: 'auto',
+              borderRadius: 5,
+            }}
+          >
+            <View style={tailwind('pl-2 pt-2')}>
+              <Text style={tailwind('text-left font-bold text-sm')}>
+                Dose 1 :
+              </Text>
+              <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                Date:{' '}
+                <Moment element={Text} format="DD-MMM-Y">
+                  {dose1Date}
+                </Moment>
+                11:48 AM
+              </Text>
+              <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                Manufacturer: {vaccineManufacturer}
+              </Text>
+              <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                Facilitiey: {vaccineFaciality}
+              </Text>
+              <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                Batch: {dose1Batch}
+              </Text>
+            </View>
+          </View>
+          <View
+            style={{
+              width: '95%',
+              height: 150,
+              backgroundColor: 'rgba(255, 255, 255,0.6)',
+              marginRight: 'auto',
+              marginLeft: 'auto',
+              marginTop: 10,
+              borderRadius: 5,
+            }}
+          >
+            <View style={tailwind('pl-2 pt-2')}>
+              <Text style={tailwind('text-left font-bold text-sm')}>
+                Dose 2 :
+              </Text>
+              <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                Date:{' '}
+                <Moment element={Text} format="DD-MMM-Y">
+                  {dose2Date}
+                </Moment>
+                01:48 PM
+              </Text>
+              <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                Manufacturer:{vaccineManufacturer}
+              </Text>
+              <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                Facilitiey: {vaccineFaciality}
+              </Text>
+              <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                Batch: {dose2Batch}
+              </Text>
+            </View>
+          </View>
+          <View style={tailwind('flex flex-row mt-2 justify-center')}>
+            <View
+              style={{
+                width: 70,
+                height: 75,
+                backgroundColor: 'rgba(255, 255, 255,0.6)',
+                marginRight: 5,
+                borderWidth: 1,
+                borderColor: 'black',
+                borderRadius: 5,
+              }}
+            >
+              <Image
+                source={require('./big-qr.png')}
+                style={{
+                  resizeMode: 'cover',
+                  width: 35,
+                  height: 35,
+                  marginTop: 5,
+                  marginRight: 'auto',
+                  marginLeft: 'auto',
+                }}
+              />
+              <Text style={tailwind('text-gray-700 mt-2 text-center text-xs')}>
+                Show QR
+              </Text>
+            </View>
+            <View
+              style={{
+                width: 70,
+                height: 75,
+                borderWidth: 1,
+                borderColor: 'black',
+                marginLeft: 5,
+                backgroundColor: 'rgba(255, 255, 255,0.6)',
+                borderRadius: 5,
+              }}
+            >
+              <Image
+                source={require('./pdf.png')}
+                style={{
+                  resizeMode: 'cover',
+                  width: 35,
+                  height: 35,
+                  marginTop: 5,
+                  marginRight: 'auto',
+                  marginLeft: 'auto',
+                }}
+              />
+              <Text style={tailwind('text-gray-700 mt-2 text-center text-xs')}>
+                Dwonload
+              </Text>
             </View>
           </View>
         </View>

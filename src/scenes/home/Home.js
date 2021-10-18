@@ -20,7 +20,7 @@ import Image from 'react-native-scalable-image'
 
 const styles = StyleSheet.create({
   topContainer: {
-    height: '32%',
+    height: 200,
     backgroundColor: colors.lightBlue,
   },
 })
@@ -33,11 +33,11 @@ const Home = () => {
   return (
     <ScrollView>
       <View style={[styles.topContainer]} />
-      <View style={[tailwind('w-full -mt-96 flex')]}>
+      <View style={[tailwind('w-full -mt-60 flex')]}>
         <View style={[tailwind('self-center w-11/12')]}>
           <View style={[tailwind('bg-white h-72 w-full mt-12 rounded-md')]}>
             <View style={tailwind('flex flex-row mt-4')}>
-              <View style={tailwind('w-4/12')}>
+              <TouchableOpacity style={tailwind('w-4/12')}>
                 <Svg
                   style={{ marginRight: 'auto', marginLeft: 'auto' }}
                   name={icons[0].icon}
@@ -45,8 +45,8 @@ const Home = () => {
                 <Text style={tailwind('text-center text-xs font-thin pt-1')}>
                   COVID-19 Status
                 </Text>
-              </View>
-              <View style={tailwind('w-4/12 ')}>
+              </TouchableOpacity>
+              <TouchableOpacity style={tailwind('w-4/12 ')}>
                 <Svg
                   style={{ marginRight: 'auto', marginLeft: 'auto' }}
                   name={icons[1].icon}
@@ -54,8 +54,8 @@ const Home = () => {
                 <Text style={tailwind('text-center text-xs font-thin pt-1')}>
                   COVID-19 Vaccination
                 </Text>
-              </View>
-              <View style={tailwind('w-4/12')}>
+              </TouchableOpacity>
+              <TouchableOpacity style={tailwind('w-4/12')}>
                 <Svg
                   style={{ marginRight: 'auto', marginLeft: 'auto' }}
                   name={icons[2].icon}
@@ -63,10 +63,10 @@ const Home = () => {
                 <Text style={tailwind('text-center text-xs font-thin pt-1')}>
                   COVID-19 Self Test
                 </Text>
-              </View>
+              </TouchableOpacity>
             </View>
             <View style={tailwind('flex flex-row mt-8')}>
-              <View style={tailwind('w-4/12')}>
+              <TouchableOpacity style={tailwind('w-4/12')}>
                 <Svg
                   style={{ marginRight: 'auto', marginLeft: 'auto' }}
                   name={icons[3].icon}
@@ -74,8 +74,8 @@ const Home = () => {
                 <Text style={tailwind('text-center text-xs font-thin pt-1')}>
                   Digital Health
                 </Text>
-              </View>
-              <View style={tailwind('w-4/12')}>
+              </TouchableOpacity>
+              <TouchableOpacity style={tailwind('w-4/12')}>
                 <Svg
                   style={{ marginRight: 'auto', marginLeft: 'auto' }}
                   name={icons[4].icon}
@@ -83,8 +83,8 @@ const Home = () => {
                 <Text style={tailwind('text-center text-xs font-thin pt-1')}>
                   Hotspot
                 </Text>
-              </View>
-              <View style={tailwind('w-4/12')}>
+              </TouchableOpacity>
+              <TouchableOpacity style={tailwind('w-4/12')}>
                 <Svg
                   style={{ marginRight: 'auto', marginLeft: 'auto' }}
                   name={icons[5].icon}
@@ -92,10 +92,10 @@ const Home = () => {
                 <Text style={tailwind('text-center text-xs font-thin pt-1')}>
                   Helpdesk
                 </Text>
-              </View>
+              </TouchableOpacity>
             </View>
             <View style={tailwind('flex flex-row mt-8')}>
-              <View style={tailwind('w-4/12')}>
+              <TouchableOpacity style={tailwind('w-4/12')}>
                 <Svg
                   style={{ marginRight: 'auto', marginLeft: 'auto' }}
                   name={icons[6].icon}
@@ -103,8 +103,8 @@ const Home = () => {
                 <Text style={tailwind('text-center text-xs font-thin pt-1')}>
                   Manage Dependents
                 </Text>
-              </View>
-              <View style={tailwind('w-4/12')}>
+              </TouchableOpacity>
+              <TouchableOpacity style={tailwind('w-4/12')}>
                 <Svg
                   style={{ marginRight: 'auto', marginLeft: 'auto' }}
                   name={icons[7].icon}
@@ -112,7 +112,7 @@ const Home = () => {
                 <Text style={tailwind('text-center text-xs font-thin pt-1')}>
                   Health Facilities
                 </Text>
-              </View>
+              </TouchableOpacity>
               <View style={tailwind('w-4/12')}>
                 <HomePageActionSheet />
               </View>
@@ -187,7 +187,10 @@ const Home = () => {
             </View>
           </View>
           <Image
-            width={Dimensions.get('window').width} // height will be calculated automatically
+            width={
+              Dimensions.get('window').width
+              - Dimensions.get('window').width / 12
+            } // height will be calculated automatically
             source={require('./delta.jpg')}
           />
         </View>
@@ -224,7 +227,10 @@ const Home = () => {
             </View>
           </View>
           <Image
-            width={Dimensions.get('window').width} // height will be calculated automatically
+            width={
+              Dimensions.get('window').width
+              - Dimensions.get('window').width / 12
+            } // height will be calculated automatically
             source={require('./delta.jpg')}
           />
         </View>

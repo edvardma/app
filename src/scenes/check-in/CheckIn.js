@@ -60,7 +60,12 @@ const Details = ({ navigation }) => {
       }),
     )
   }
-
+  const handleCheckOut = (id) => {
+    navigation.navigate('CheckOut', { id })
+  }
+  const goToHistory = () => {
+    navigation.navigate('ScansHistory')
+  }
   return (
     <>
       {scanner ? (
@@ -70,57 +75,68 @@ const Details = ({ navigation }) => {
         />
       ) : (
         <>
-          <ScrollView style={{ marginBottom: 65 }}>
-            <View style={[styles.topContainer]} />
-            <View style={[tailwind('w-full -mt-48 flex')]}>
-              <View style={[tailwind('self-center ')]}>
-                <Image
-                  source={require('./checkin-icon.png')}
-                  style={{ resizeMode: 'cover', width: 120, height: 120 }}
-                />
-              </View>
-              <View style={tailwind('pb-12 ')}>
-                <Text style={tailwind('text-white font-bold pt-3 self-center')}>
-                  {status}
-                </Text>
-                <Text style={tailwind('text-white self-center')}>
-                  {passportNumber}
-                </Text>
-              </View>
+          <View style={[styles.topContainer]} />
+          <View style={[tailwind('w-full -mt-48 flex')]}>
+            <View style={[tailwind('self-center ')]}>
+              <Image
+                source={require('./checkin-icon.png')}
+                style={{ resizeMode: 'cover', width: 120, height: 120 }}
+              />
             </View>
-            <View style={tailwind('w-full flex flex-col ')}>
-              <CheckInCard icon={<Svg name="virus" />} bgColor="#51b6b8">
-                <View style={tailwind('flex flex-col content-center')}>
-                  <Text style={tailwind('text-white  pl-2 ')}>
-                    COVID-19 Risk Status
-                  </Text>
-                  <Text style={tailwind('text-white text-lg font-bold pl-2 ')}>
-                    Low Risk, No Symptom
-                  </Text>
-                </View>
-              </CheckInCard>
+            <View style={tailwind('pb-12 ')}>
+              <Text style={tailwind('text-white font-bold pt-3 self-center')}>
+                {status}
+              </Text>
+              <Text style={tailwind('text-white self-center')}>
+                {passportNumber}
+              </Text>
+            </View>
+          </View>
+          <View style={tailwind('w-full flex flex-col ')}>
+            <CheckInCard
+              icon={<Svg name="virus" width={35} height={35} />}
+              bgColor="#51b6b8"
+            >
+              <View style={tailwind('flex flex-col content-center')}>
+                <Text style={tailwind('text-white  pl-2 ')}>
+                  COVID-19 Risk Status
+                </Text>
+                <Text style={tailwind('text-white text-lg font-bold pl-2 ')}>
+                  Low Risk No Symptom
+                </Text>
+              </View>
+            </CheckInCard>
 
-              <CheckInCard icon={<Svg name="vaccine" />} bgColor="#51b6b8">
-                <View style={tailwind('flex flex-col content-center')}>
-                  <Text style={tailwind('text-white pl-2 ')}>
-                    Covid-19 Vaccination Status
-                  </Text>
-                  <Text style={tailwind('text-white text-lg font-bold pl-2 ')}>
-                    Vaccinated
-                  </Text>
-                </View>
-              </CheckInCard>
-              {scans.map((item, index) => (
-                <CheckInHistoryCard
-                  key={`history-item-${index}`}
-                  location={item.location}
-                  date={item.date}
-                  id={item.id}
-                  checkedOut={item.checkedOut}
+            <CheckInCard
+              icon={(
+                <Image
+                  source={require('./vaccineb.png')}
+                  style={{ width: 35, height: 35 }}
                 />
-              ))}
-            </View>
-          </ScrollView>
+              )}
+              bgColor="#FDD875"
+            >
+              <View style={tailwind('flex flex-col content-center')}>
+                <Text style={tailwind('text-black pl-2 ')}>
+                  Covid-19 Vaccination Status
+                </Text>
+                <Text style={tailwind('text-black text-lg font-bold pl-2 ')}>
+                  Vaccinated
+                </Text>
+              </View>
+            </CheckInCard>
+            {scans.length ? (
+              <CheckInHistoryCard
+                key="history-item"
+                location={scans[0].location}
+                date={scans[0].date}
+                id={scans[0].id}
+                handleCheckOut={handleCheckOut}
+                goToHistory={goToHistory}
+                checkedOut={scans[0].checkedOut}
+              />
+            ) : null}
+          </View>
           <View style={tailwind('absolute bottom-0 w-full bg-white')}>
             <Button
               title="Check-in"
@@ -128,16 +144,16 @@ const Details = ({ navigation }) => {
               style={tailwind('m-5 w-11/12')}
               backgroundColor={colors.lightBlue}
               onPress={async () => {
-                // setScanned(false)
-                // setScanner(true)
-                dispatch(
-                  saveScanned({
-                    location: 'VENG SEDFCOSP SDFKSDF PDSOFDKSF',
-                    id: uuid.v4(),
-                    date: new Date(),
-                    checkedOut: false,
-                  }),
-                )
+                setScanned(false)
+                setScanner(true)
+                // dispatch(
+                //   saveScanned({
+                //     location: 'VENG SEDFCOSP SDFKSDF PDSOFDKSF',
+                //     id: uuid.v4(),
+                //     date: new Date(),
+                //     checkedOut: false,
+                //   }),
+                // )
                 setTimeout(async () => {
                   await persistor.purge()
                 }, 500)

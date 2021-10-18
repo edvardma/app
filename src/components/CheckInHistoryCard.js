@@ -1,5 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import {
+  StyleSheet, Text, View, TouchableOpacity,
+} from 'react-native'
 import tailwind from 'tailwind-rn'
 import Svg from 'components/Svg'
 import Moment from 'react-moment'
@@ -21,7 +23,12 @@ const styles = StyleSheet.create({
 })
 
 const CheckInHistoryCard = ({
-  location, date, checkedOut, id,
+  location,
+  date,
+  checkedOut,
+  id,
+  handleCheckOut,
+  goToHistory,
 }) => {
   const dispatch = useDispatch()
   return (
@@ -35,10 +42,21 @@ const CheckInHistoryCard = ({
         >
           <Svg name="shopPop" height="80" width="60" />
           <View style={tailwind('flex flex-col content-center')}>
-            <Text style={tailwind('text-black text-xs pl-2')}>
-              Last Check-in
+            <TouchableOpacity onPress={goToHistory}>
+              <View style={tailwind('flex flex-row justify-end')}>
+                <Text style={tailwind('text-blue-600 text-xs pl-2')}>
+                  History
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <View style={tailwind('flex flex-row justify-start')}>
+              <Text style={tailwind('text-black text-xs pl-2')}>
+                Last Check-in
+              </Text>
+            </View>
+            <Text style={tailwind('text-black text-lg pl-2 capitalize')}>
+              {location}
             </Text>
-            <Text style={tailwind('text-black text-lg pl-2 ')}>{location}</Text>
             <Text style={tailwind('text-gray-600 text-xs pl-2 ')}>
               <Moment format="MMM D, YYYY, LTS" element={Text}>
                 {date}
@@ -50,7 +68,10 @@ const CheckInHistoryCard = ({
                   colorScheme="darkBlue"
                   size="md"
                   variant="outline"
-                  onPress={() => dispatch(checkOut({ id }))}
+                  onPress={() => {
+                    handleCheckOut(id)
+                    dispatch(checkOut({ id }))
+                  }}
                 >
                   Check-out
                 </Button>

@@ -4,6 +4,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer'
+import { Dimensions } from 'react-native'
 import DrawerMenu from './DrawerMenu'
 import TabNavigator from '../tabs'
 
@@ -22,7 +23,12 @@ const DrawerMenuContainer = (props) => {
 }
 
 const DrawerNavigator = () => (
-  <Drawer.Navigator initialRouteName="Home" drawerContent={DrawerMenuContainer}>
+  <Drawer.Navigator
+    initialRouteName="Home"
+    drawerStyle={{ width: Dimensions.get('window').width }}
+    drawerPosition="right"
+    drawerContent={DrawerMenuContainer}
+  >
     <Drawer.Screen name="Home" component={TabNavigator} />
   </Drawer.Navigator>
 )

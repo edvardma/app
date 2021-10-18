@@ -91,18 +91,21 @@ const Statics = () => {
       ]}
     >
       <View>
-        <Text style={tailwind('text-white text-center text-xl font-semibold')}>
+        <Text style={tailwind('text-white text-center text-lg font-semibold')}>
           {title}
         </Text>
-        <Text style={tailwind('mt-2 text-center text-white')}>{content}</Text>
+        <Text style={tailwind('mt-1 text-center text-xs text-white')}>
+          {content}
+        </Text>
         <Text
-          style={[tailwind('mt-5 text-center text-white'), { fontSize: 39 }]}
+          style={[tailwind('mt-3 text-center text-white'), { fontSize: 39 }]}
         >
           {number}
         </Text>
         {buttonTitle !== null && (
         <Button
-          style={tailwind('mt-5')}
+          style={tailwind('mt-5 text-xs')}
+          textStyle={tailwind(' text-sm')}
           title={buttonTitle}
           backgroundColor="white"
           color={color === 'black' ? 'red' : color}

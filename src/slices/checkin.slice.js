@@ -7,6 +7,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   scans: [],
+  history: [],
 }
 
 // ------------------------------------
@@ -18,7 +19,8 @@ const checkInSlice = createSlice({
   initialState,
   reducers: {
     saveScanned: (state, { payload }) => {
-      state.scans.push(payload)
+      state.scans.unshift(payload)
+      state.history.unshift({ ...payload, type: 'checkIn' })
     },
     removeItem: (state, { payload }) => {
       const { id } = payload
@@ -28,7 +30,17 @@ const checkInSlice = createSlice({
       const { id } = payload
       const index = state.scans.findIndex((item) => item.id === id)
 
-      state.scans[index] = { ...state.scans[index], checkedOut: true }
+      state.scans[index] = {
+        ...state.scans[index],
+        checkedOut: true,
+        checkOutDate: new Date(),
+      }
+
+      state.history.unshift({
+        ...payload,
+        type: 'checkInOut',
+        date: new Date(),
+      })
     },
   },
 })

@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { fonts } from 'theme'
-import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import { Ionicons } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({

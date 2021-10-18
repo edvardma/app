@@ -4,12 +4,16 @@ import { colors } from 'theme'
 import Home from 'scenes/home'
 import Profile from 'scenes/profile'
 import SetupUser from 'scenes/profile/SetupUser'
+import Settings from 'scenes/profile/Settings'
 import Statics from 'scenes/statics'
 import CheckIn from 'scenes/check-in'
 import InvalidQR from 'scenes/check-in/InvalidQR'
 import CheckInSuccess from 'scenes/check-in/CheckInSuccess'
+import CheckOut from 'scenes/check-in/CheckOut'
+import ScansHistory from 'scenes/check-in/ScansHistory'
 import RefreshStatusButton from 'components/RefreshStatusButton'
 import HeaderTitle from './HeaderTitle'
+import HeaderRight from './HeaderRight'
 
 // ------------------------------------
 // Constants
@@ -44,7 +48,7 @@ export const HomeNavigator = () => (
   </Stack.Navigator>
 )
 
-export const ProfileNavigator = () => (
+export const ProfileNavigator = ({ navigation }) => (
   <Stack.Navigator
     initialRouteName="Profile"
     headerMode="screen"
@@ -56,6 +60,7 @@ export const ProfileNavigator = () => (
       options={() => ({
         title: 'Profile',
         headerTitle: () => <HeaderTitle title="Profile" />,
+        headerRight: () => <HeaderRight navigation={navigation} />,
       })}
     />
 
@@ -65,6 +70,14 @@ export const ProfileNavigator = () => (
       options={() => ({
         title: 'Setup',
         headerTitle: () => <HeaderTitle title="Setup" />,
+      })}
+    />
+    <Stack.Screen
+      name="Settings"
+      component={Settings}
+      options={() => ({
+        title: 'Settings',
+        headerTitle: () => <HeaderTitle title="Settings" />,
       })}
     />
   </Stack.Navigator>
@@ -101,6 +114,23 @@ export const CheckInNavigator = () => (
         headerShown: false,
         title: '',
         headerTitle: '',
+      })}
+    />
+    <Stack.Screen
+      name="CheckOut"
+      component={CheckOut}
+      options={() => ({
+        headerShown: false,
+        title: '',
+        headerTitle: '',
+      })}
+    />
+    <Stack.Screen
+      name="ScansHistory"
+      component={ScansHistory}
+      options={() => ({
+        title: '',
+        headerTitle: <HeaderTitle title="History" />,
       })}
     />
   </Stack.Navigator>

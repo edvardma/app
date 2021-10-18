@@ -14,7 +14,7 @@ const styles = {
   },
   head: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
   },
   main: {
     flex: 1,

@@ -1,10 +1,11 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import { colors } from 'theme'
 
 // stack navigators
+import Svg from 'components/Svg'
 import {
   HomeNavigator,
   CheckInNavigator,
@@ -13,6 +14,10 @@ import {
 } from '../stacks'
 
 const Tab = createBottomTabNavigator()
+const barcodebIcon = require('./barcodeb.png')
+const barcodegIcon = require('./barcodeg.png')
+const dashboardgIcon = require('./dashboard-outline.png')
+const dashboardbIcon = require('./dashboard.png')
 
 const TabNavigator = () => (
   <Tab.Navigator
@@ -31,20 +36,16 @@ const TabNavigator = () => (
             )
           case 'CheckIn':
             return (
-              <FontIcon
-                name="qrcode"
-                color={focused ? colors.lightBlue : colors.gray}
-                size={20}
-                solid
+              <Image
+                style={{ width: 25, height: 25 }}
+                source={focused ? barcodebIcon : barcodegIcon}
               />
             )
           case 'Statics':
             return (
-              <FontIcon
-                name="chart-area"
-                color={focused ? colors.lightBlue : colors.gray}
-                size={20}
-                solid
+              <Image
+                style={{ width: 25, height: 25 }}
+                source={focused ? dashboardbIcon : dashboardgIcon}
               />
             )
           case 'Profile':
@@ -52,7 +53,7 @@ const TabNavigator = () => (
               <FontIcon
                 name="user"
                 color={focused ? colors.lightBlue : colors.gray}
-                size={20}
+                size={21}
                 solid
               />
             )

@@ -12,6 +12,13 @@ const initialState = {
     email: 'demo@demo.com',
     state: 'demo@demo.com',
     passportNumber: '6487941948',
+    certificateHospitalName: 'Hospital Pulau Piang',
+    dose1Date: '2021/1/1',
+    dose2Date: '2021/1/1',
+    dose1Batch: 'dose1Batch',
+    dose2Batch: 'dose2Batch',
+    vaccineManufacturer: 'COVID-19 Vaccine AstraZeneca Solution for Injection',
+    vaccineFaciality: 'World Trade Centere Kuala Lumpur (Station 3)',
   },
 }
 
@@ -29,6 +36,13 @@ const appSlice = createSlice({
       state.user.email = payload.email
       state.user.state = payload.state
       state.user.passportpassNoNumber = payload.passportpassNoNumber
+      state.user.certificateHospitalName = payload.certificateHospitalName
+      state.user.dose1Date = payload.dose1Date
+      state.user.dose2Date = payload.dose2Date
+      state.user.vaccineManufacturer = payload.vaccineManufacturer
+      state.user.vaccineFaciality = payload.vaccineFaciality
+      state.user.dose1Batch = payload.dose1Batch
+      state.user.dose2Batch = payload.dose2Batch
     },
   },
 })
