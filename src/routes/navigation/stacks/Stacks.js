@@ -1,19 +1,18 @@
 import React from 'react'
+import { View } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { colors } from 'theme'
-import Home from 'scenes/home'
-import Profile from 'scenes/profile'
 import SetupUser from 'scenes/profile/SetupUser'
 import Settings from 'scenes/profile/Settings'
-import Statics from 'scenes/statics'
-import CheckIn from 'scenes/check-in'
 import InvalidQR from 'scenes/check-in/InvalidQR'
 import CheckInSuccess from 'scenes/check-in/CheckInSuccess'
 import CheckOut from 'scenes/check-in/CheckOut'
+import InitialCheckIn from 'scenes/check-in/InitialCheckIn'
 import ScansHistory from 'scenes/check-in/ScansHistory'
-import RefreshStatusButton from 'components/RefreshStatusButton'
+import Scan from 'scenes/check-in/Scan'
+import { Ionicons } from '@expo/vector-icons'
+import Home from '../tabs'
 import HeaderTitle from './HeaderTitle'
-import HeaderRight from './HeaderRight'
 
 // ------------------------------------
 // Constants
@@ -33,37 +32,25 @@ const navigationProps = {
 
 export const HomeNavigator = () => (
   <Stack.Navigator
-    initialRouteName="Home"
+    initialRouteName="InitialCheckIn"
     headerMode="screen"
     screenOptions={navigationProps}
   >
+    <Stack.Screen
+      name="InitialCheckIn"
+      component={InitialCheckIn}
+      options={() => ({
+        headerShown: false,
+      })}
+    />
     <Stack.Screen
       name="Home"
       component={Home}
+      screenOptions={{}}
       options={() => ({
-        title: 'MySejahtera',
-        headerTitle: () => <HeaderTitle title="MySejahtera" />,
+        headerShown: false,
       })}
     />
-  </Stack.Navigator>
-)
-
-export const ProfileNavigator = ({ navigation }) => (
-  <Stack.Navigator
-    initialRouteName="Profile"
-    headerMode="screen"
-    screenOptions={navigationProps}
-  >
-    <Stack.Screen
-      name="Profile"
-      component={Profile}
-      options={() => ({
-        title: 'Profile',
-        headerTitle: () => <HeaderTitle title="Profile" />,
-        headerRight: () => <HeaderRight navigation={navigation} />,
-      })}
-    />
-
     <Stack.Screen
       name="Setup"
       component={SetupUser}
@@ -80,24 +67,6 @@ export const ProfileNavigator = ({ navigation }) => (
         headerTitle: () => <HeaderTitle title="Settings" />,
       })}
     />
-  </Stack.Navigator>
-)
-
-export const CheckInNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="CheckIn"
-    headerMode="screen"
-    screenOptions={navigationProps}
-  >
-    <Stack.Screen
-      name="Check-In"
-      component={CheckIn}
-      options={() => ({
-        title: 'CheckIn',
-        headerTitle: () => <HeaderTitle title="Check-in" />,
-        headerRight: () => <RefreshStatusButton />,
-      })}
-    />
     <Stack.Screen
       name="InvalidQR"
       component={InvalidQR}
@@ -106,23 +75,64 @@ export const CheckInNavigator = () => (
         headerTitle: '',
       })}
     />
-
+    {/* <Stack.Screen
+      name="InitialCheckIn"
+      component={InitialCheckIn}
+      options={() => ({
+        headerShown: true,
+        title: '',
+        headerRight: () => (
+          <View
+            style={{
+              flexDirection: 'row',
+              display: 'flex',
+              justifyContent: 'center',
+              marginRight: 10,
+            }}
+          >
+            <Ionicons name="scan-outline" size={23} color="white" />
+          </View>
+        ),
+      })}
+    /> */}
     <Stack.Screen
       name="CheckInSuccess"
       component={CheckInSuccess}
       options={() => ({
-        headerShown: false,
+        headerShown: true,
         title: '',
-        headerTitle: '',
+        headerRight: () => (
+          <View
+            style={{
+              flexDirection: 'row',
+              display: 'flex',
+              justifyContent: 'center',
+              marginRight: 10,
+            }}
+          >
+            <Ionicons name="scan-outline" size={23} color="white" />
+          </View>
+        ),
       })}
     />
     <Stack.Screen
       name="CheckOut"
       component={CheckOut}
       options={() => ({
-        headerShown: false,
+        headerShown: true,
         title: '',
-        headerTitle: '',
+        headerRight: () => (
+          <View
+            style={{
+              flexDirection: 'row',
+              display: 'flex',
+              justifyContent: 'center',
+              marginRight: 10,
+            }}
+          >
+            <Ionicons name="scan-outline" size={23} color="white" />
+          </View>
+        ),
       })}
     />
     <Stack.Screen
@@ -133,22 +143,14 @@ export const CheckInNavigator = () => (
         headerTitle: <HeaderTitle title="History" />,
       })}
     />
-  </Stack.Navigator>
-)
-
-export const StaticsNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="Statitcs"
-    headerMode="screen"
-    screenOptions={navigationProps}
-  >
     <Stack.Screen
-      name="Statitcs"
-      component={Statics}
+      name="Scan"
+      component={Scan}
       options={() => ({
-        title: 'Statitcs',
-        headerTitle: () => <HeaderTitle title="Statitcs" />,
+        headerShown: false,
       })}
     />
   </Stack.Navigator>
 )
+
+export default HomeNavigator

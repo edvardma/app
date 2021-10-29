@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {
   StyleSheet,
   View,
+  SafeAreaView,
   Text,
   ScrollView,
   TouchableOpacity,
@@ -11,7 +12,7 @@ import tailwind from 'tailwind-rn'
 import Button from 'components/Button'
 import { colors } from 'theme'
 import { useSelector, useDispatch } from 'react-redux'
-import { setActiveCategory } from 'slices/statics.slice'
+import HeaderTitle from 'components/HeaderTitle'
 
 const styles = StyleSheet.create({
   topContainer: {
@@ -45,6 +46,7 @@ const Statics = () => {
   const categories = useSelector((state) => state.statics.categories)
   const [activeCat, setActiveCat] = React.useState('updates')
   const cards = useSelector((state) => state.statics.statics)
+  const [titleCenter, setTitleCenter] = React.useState(false)
 
   const Chip = ({ label, id }) => (
     <TouchableOpacity
@@ -78,9 +80,7 @@ const Statics = () => {
       </View>
     </TouchableOpacity>
   )
-  const Card = ({
-    title, content, number, color, buttonTitle,
-  }) => (
+  const Card = ({ title, content, number, color, buttonTitle }) => (
     <View
       style={[
         {
@@ -103,53 +103,67 @@ const Statics = () => {
           {number}
         </Text>
         {buttonTitle !== null && (
-        <Button
-          style={tailwind('mt-5 text-xs')}
-          textStyle={tailwind(' text-sm')}
-          title={buttonTitle}
-          backgroundColor="white"
-          color={color === 'black' ? 'red' : color}
-        />
+          <Button
+            style={tailwind('mt-5 text-xs')}
+            textStyle={tailwind(' text-sm')}
+            title={buttonTitle}
+            backgroundColor="white"
+            color={color === 'black' ? 'red' : color}
+          />
         )}
       </View>
     </View>
   )
 
   return (
-    <ScrollView
-      vertical
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      style={[styles.cards, tailwind('w-full')]}
-    >
-      <View style={[styles.topContainer, tailwind('-mt-4')]} />
-      <View style={[tailwind('-mt-32  w-full '), styles.mainContainer]}>
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          horizontal
-          style={[styles.chips, tailwind(' flex-row')]}
-        >
-          {categories.map((cat) => (
-            <Chip key={`chip${cat.id}`} id={cat.id} label={cat.label} />
-          ))}
-        </ScrollView>
+    <SafeAreaView>
+      <HeaderTitle center={titleCenter} title="Statics" />
 
-        {cards[activeCat].map((card, index) => (
-          <React.Fragment key={`card${index}`}>
-            {card.type === 'card' && (
-              <Card
-                title={card.title}
-                buttonTitle={card.buttonTitle ? card.buttonTitle : null}
-                color={card.color}
-                content={card.description}
-                number={card.number}
-              />
-            )}
-          </React.Fragment>
-        ))}
-      </View>
-    </ScrollView>
+      <ScrollView
+        vertical
+        onScroll={(e) => {
+          e.nativeEvent.contentOffset.y >= 10
+            ? !titleCenter
+              ? setTitleCenter(true)
+              : false
+            : titleCenter
+            ? setTitleCenter(false)
+            : false
+        }}
+        scrollEventThrottle={5}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        style={[styles.cards, tailwind('w-full')]}
+      >
+        <View style={[styles.topContainer, tailwind('-mt-4')]} />
+        <View style={[tailwind('-mt-32  w-full '), styles.mainContainer]}>
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            horizontal
+            style={[styles.chips, tailwind(' flex-row')]}
+          >
+            {categories.map((cat) => (
+              <Chip key={`chip${cat.id}`} id={cat.id} label={cat.label} />
+            ))}
+          </ScrollView>
+
+          {cards[activeCat].map((card, index) => (
+            <React.Fragment key={`card${index}`}>
+              {card.type === 'card' && (
+                <Card
+                  title={card.title}
+                  buttonTitle={card.buttonTitle ? card.buttonTitle : null}
+                  color={card.color}
+                  content={card.description}
+                  number={card.number}
+                />
+              )}
+            </React.Fragment>
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 

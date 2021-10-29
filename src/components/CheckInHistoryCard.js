@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  StyleSheet, Text, View, TouchableOpacity,
-} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import tailwind from 'tailwind-rn'
 import Svg from 'components/Svg'
 import Moment from 'react-moment'
@@ -36,15 +34,15 @@ const CheckInHistoryCard = ({
       <View style={styles.root}>
         <View
           style={[
-            { backgroundColor: 'white', height: checkedOut ? 110 : 150 },
+            { backgroundColor: 'white', height: checkedOut ? 130 : 150 },
             tailwind('flex flex-row items-center pt-3 rounded-md p-3'),
           ]}
         >
           <Svg name="shopPop" height="80" width="60" />
-          <View style={tailwind('flex flex-col content-center')}>
+          <View style={tailwind('flex flex-col content-center mt-1')}>
             <TouchableOpacity onPress={goToHistory}>
-              <View style={tailwind('flex flex-row justify-end')}>
-                <Text style={tailwind('text-blue-600 text-xs pl-2')}>
+              <View style={tailwind('flex flex-row justify-end ')}>
+                <Text style={tailwind('text-blue-600 text-xs mr-4')}>
                   History
                 </Text>
               </View>
@@ -54,7 +52,9 @@ const CheckInHistoryCard = ({
                 Last Check-in
               </Text>
             </View>
-            <Text style={tailwind('text-black text-lg pl-2 capitalize')}>
+            <Text
+              style={tailwind('text-black text-lg pl-2 capitalize w-10/12')}
+            >
               {location}
             </Text>
             <Text style={tailwind('text-gray-600 text-xs pl-2 ')}>
@@ -63,7 +63,7 @@ const CheckInHistoryCard = ({
               </Moment>
             </Text>
             {!checkedOut ? (
-              <View style={tailwind('w-72 pl-2 pt-2')}>
+              <View style={tailwind('w-72 pl-2 pt-2 pb-4')}>
                 <Button
                   colorScheme="darkBlue"
                   size="md"

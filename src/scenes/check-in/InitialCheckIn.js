@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { colors } from 'theme'
 import Button from 'components/Button'
@@ -28,10 +28,26 @@ const Details = ({ navigation }) => {
     navigation.navigate('ScansHistory')
   }
   return (
-    <>
-      <View style={tailwind('flex flex-row justify-between')}>
-        <HeaderTitle title="Check-in" />
-        <RefreshStatusButton />
+    <View style={tailwind('h-full w-full bg-gray-200')}>
+      <View
+        style={[
+          tailwind('flex flex-row justify-between px-4 pt-2 '),
+          { backgroundColor: colors.lightBlue },
+        ]}
+      >
+        <TouchableOpacity>
+          <RefreshStatusButton />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Home')}
+          style={tailwind('bg-gray-200 rounded-full')}
+        >
+          <Text
+            style={[{ color: colors.lightBlue }, tailwind('text-xs  px-2')]}
+          >
+            Close
+          </Text>
+        </TouchableOpacity>
       </View>
       <View style={[styles.topContainer]} />
       <View style={[tailwind('w-full -mt-48 flex')]}>
@@ -103,26 +119,10 @@ const Details = ({ navigation }) => {
           backgroundColor={colors.lightBlue}
           onPress={async () => {
             navigation.navigate('Scan')
-            // navigation.navigate('CheckI/nSuccess', { location: 'xxxxxxx' })
-
-            // dispatch(
-            //   saveScanned({
-            //     location: 'VENG SEDFCOSP SDFKSDF PDSOFDKSF',
-            //     id: uuid.v4(),
-            //     date: new Date(),
-            //     checkedOut: false,
-            //   }),
-            // )
-            // setTimeout(async () => {
-            //   await persistor.purge()
-            // }, 500)
-            // alert('done')
-
-            // navigation.navigate('InvalidQR')
           }}
         />
       </View>
-    </>
+    </View>
   )
 }
 export default Details

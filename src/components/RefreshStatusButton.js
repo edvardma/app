@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { fonts } from 'theme'
+import { fonts, colors } from 'theme'
 import { Ionicons } from '@expo/vector-icons'
 
 const styles = StyleSheet.create({
@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    paddingTop: 21,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    backgroundColor: colors.lightBlue,
   },
 })
 

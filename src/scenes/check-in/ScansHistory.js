@@ -59,7 +59,7 @@ const ScansHistory = ({ navigation }) => {
                 style={tailwind('h-10 w-10 ml-2 mt-2')}
               />
               <View style={tailwind('flex flex-col content-center')}>
-                <Text style={tailwind('text-sm pl-2')}>
+                <Text style={tailwind('text-sm pl-2 w-10/12')}>
                   {item.type === 'checkIn' ? 'Check-in ' : 'Check-out '}at{' '}
                   {item.location}
                 </Text>

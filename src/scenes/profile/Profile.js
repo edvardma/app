@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import {
   StyleSheet,
   View,
+  SafeAreaView,
   Dimensions,
   Text,
   ScrollView,
@@ -16,6 +17,9 @@ import Svg from 'components/Svg'
 import { Avatar, Button } from 'native-base'
 import Moment from 'react-moment'
 import { useSelector } from 'react-redux'
+import HeaderTitle from 'components/HeaderTitle'
+import SettingsMenu from 'components/SettingsMenu'
+import { Ionicons } from '@expo/vector-icons'
 
 const windowHeight = Dimensions.get('window').height
 
@@ -45,14 +49,37 @@ const Home = ({ navigation }) => {
     dose2Batch,
     vaccineManufacturer,
     vaccineFaciality,
+    pcrDate,
   } = useSelector(
     // eslint-disable-next-line no-shadow
     (state) => state.app.user,
   )
+  const [titleCenter, setTitleCenter] = React.useState(false)
 
   return (
-    <View style={styles.root}>
-      <ScrollView>
+    <>
+      <View
+        style={[tailwind('relative'), { backgroundColor: colors.lightBlue }]}
+      >
+        <View style={tailwind('w-full')}>
+          <HeaderTitle center={titleCenter} title="Profile" />
+        </View>
+        <View style={tailwind('absolute right-2')}>
+          <SettingsMenu navigation={navigation} />
+        </View>
+      </View>
+      <ScrollView
+        onScroll={(e) => {
+          e.nativeEvent.contentOffset.y >= 10
+            ? !titleCenter
+              ? setTitleCenter(true)
+              : false
+            : titleCenter
+            ? setTitleCenter(false)
+            : false
+        }}
+        scrollEventThrottle={5}
+      >
         <View style={[styles.topContainer]} />
         <View style={[tailwind('w-full -mt-8 flex')]}>
           <View
@@ -128,9 +155,12 @@ const Home = ({ navigation }) => {
             ),
           ]}
         >
-          <Text style={tailwind('text-left pl-10 text-sm text-gray-700')}>
-            Click to refresh your profile
-          </Text>
+          <View style={tailwind('flex flex-row')}>
+            <Ionicons name="md-sync" size={18} color="black" />
+            <Text style={tailwind('text-left pl-2 text-sm text-gray-700')}>
+              Click to refresh your profile
+            </Text>
+          </View>
           <Button
             _text={{ style: { color: 'black' } }}
             size="xs"
@@ -209,24 +239,47 @@ const Home = ({ navigation }) => {
                 { borderLeftColor: 'red', borderLeftWidth: 6 },
               ]}
             >
-              <Text style={[tailwind('text-left text-xs p-2  text-gray-700')]}>
+              <Text
+                multiline={false}
+                multiline={false}
+                style={[
+                  tailwind('text-left pt-3  text-gray-700'),
+                  { fontSize: 11 },
+                ]}
+              >
                 Current Location Risk :
-                <Text style={[tailwind('text-left text-xs p-2  text-red-700')]}>
-                  Red
+                <Text
+                  multiline={false}
+                  style={[
+                    { fontSize: 11 },
+                    tailwind('text-left pt-3  text-red-700'),
+                  ]}
+                >
+                  Red Zone
                 </Text>
               </Text>
             </View>
 
             <View
               style={[
-                tailwind('h-10 border border-gray-200 pt-1 w-5/12 bg-white'),
+                tailwind('h-10 border border-gray-200 w-5/12 bg-white'),
                 { borderLeftColor: 'green', borderLeftWidth: 6 },
               ]}
             >
-              <Text style={[tailwind('text-left text-xs p-1  text-gray-700')]}>
-                High Ris dependent:
+              <Text
+                multiline={false}
+                style={[
+                  { fontSize: 11 },
+                  tailwind('text-left  pt-3 text-gray-700'),
+                ]}
+              >
+                High Risk dependent:
                 <Text
-                  style={[tailwind('text-left text-xs p-1  text-green-700')]}
+                  multiline={false}
+                  style={[
+                    { fontSize: 11 },
+                    tailwind('text-left  pt-3  text-green-700'),
+                  ]}
                 >
                   No
                 </Text>
@@ -236,18 +289,19 @@ const Home = ({ navigation }) => {
         </View>
         <View
           style={[
-            tailwind('bg-gray-100 h-14 border-gray-300'),
+            tailwind('bg-gray-200 h-14 w-11/12 border-gray-300 -mt-2 '),
             { borderBottomRightRadius: 22, borderBottomLeftRadius: 22 },
             { borderTopWidth: 1 },
+            { marginLeft: 'auto', marginRight: 'auto' },
           ]}
         >
           <View style={tailwind('flex flex-row')}>
-            <View style={tailwind('pl-4 w-9/12')}>
-              <Text style={tailwind('text-xs text-black mt-2')}>
+            <View style={tailwind(' w-9/12')}>
+              <Text style={tailwind('text-xs text-black ml-2 mt-2')}>
                 Sla tunjukkan tiket ini kepadda pemilik permis apabila diminta
               </Text>
             </View>
-            <View style={tailwind('pr-4 w-2/12 mt-2')}>
+            <View style={tailwind('pr-2 pl-2 w-2/12 mt-2')}>
               <View style={tailwind('flex flex-row justify-between')}>
                 <Image
                   source={require('./img1.png')}
@@ -268,6 +322,68 @@ const Home = ({ navigation }) => {
                 />
               </View>
             </View>
+          </View>
+        </View>
+        <View
+          style={[
+            tailwind(' h-36 rounded-xl w-11/12 flex flex-row my-4'),
+            { marginLeft: 'auto', marginRight: 'auto' },
+            { backgroundColor: '#699c4c' },
+          ]}
+        >
+          <View style={tailwind('flex flex-col w-7/12')}>
+            <View
+              style={tailwind('w-10/12 h-7 bg-gray-200 rounded-full mt-2 ml-2')}
+            >
+              <Text
+                style={[
+                  { color: '#58843F' },
+                  tailwind('text-xs text-center font-bold pt-1 px-2'),
+                ]}
+              >
+                COVID-19 Negative
+              </Text>
+              <Text
+                multiline={false}
+                style={tailwind('text-xs text-white ml-2 mt-8')}
+              >
+                Confirmation date:
+                <Moment element={Text} format="DD/MM/Y">
+                  {pcrDate}
+                </Moment>
+              </Text>
+            </View>
+          </View>
+          <View style={tailwind('flex relative flex-col w-5/12')}>
+            <Image
+              source={require('./Lambang_Malaysia.png')}
+              style={{
+                resizeMode: 'cover',
+                position: 'absolute',
+                width: 40,
+                height: 40,
+                right: 8,
+                top: 8,
+              }}
+            />
+            <Text
+              style={[
+                tailwind(
+                  'text-lg absolute text-white top-14 right-2 text-center font-bold ',
+                ),
+              ]}
+            >
+              PT-PCR
+            </Text>
+            <Text
+              style={[
+                tailwind(
+                  'text-xs absolute text-white bottom-2 right-2 text-center  ',
+                ),
+              ]}
+            >
+              Source MKAK, KMM
+            </Text>
           </View>
         </View>
         <View
@@ -310,6 +426,7 @@ const Home = ({ navigation }) => {
             borderWidth: 1,
             borderColor: '#3d3a3a',
             borderRadius: 50,
+            marginBottom: 50,
           }}
         >
           <Text style={tailwind('text-center mt-16 font-bold text-xl')}>
@@ -455,7 +572,7 @@ const Home = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </>
   )
 }
 export default Home

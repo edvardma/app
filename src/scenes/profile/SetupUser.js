@@ -116,6 +116,12 @@ const fields = [
     autoCompleteType: 'off',
     type: 'text',
     validation: (data) => !isInvalidDate(data),
+  }, {
+    id: 'pcrDate',
+    placeholder: 'PCR Confirmation Date',
+    autoCompleteType: 'off',
+    type: 'text',
+    validation: (data) => !isInvalidDate(data),
   },
 ]
 

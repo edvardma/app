@@ -1,9 +1,11 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import DrawerNavigator from './drawer'
+import { HomeNavigator } from './stacks'
 
-export default () => (
-  <NavigationContainer>
-    <DrawerNavigator />
-  </NavigationContainer>
-)
+export default () => {
+  return (
+    <NavigationContainer>
+      <HomeNavigator />
+    </NavigationContainer>
+  )
+}

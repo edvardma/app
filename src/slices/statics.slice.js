@@ -46,7 +46,7 @@ const initialState = {
       {
         type: 'card',
         color: '#e39000',
-        title: 'Kes Aktif (Actve Cases)',
+        title: 'Kes Aktif (Active Cases)',
         description: `Setakat ${moment().format('MMMM Do YYYY LTS')}`,
         buttonTitle: '+4082 Hari Ini (Today)',
       },
@@ -98,7 +98,7 @@ const initialState = {
       {
         type: 'card',
         color: '#e39000',
-        title: 'Kes Aktif (Actve Cases)',
+        title: 'Kes Aktif (Active Cases)',
         description: `Setakat ${moment().format('MMMM Do YYYY LTS')}`,
         buttonTitle: '+4082 Hari Ini (Today)',
       },

@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  StyleSheet, Text, View, StatusBar, Image,
-} from 'react-native'
+import { StyleSheet, Text, View, StatusBar, Image } from 'react-native'
 import { colors, fonts } from 'theme'
 import tailwind from 'tailwind-rn'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
@@ -20,7 +18,7 @@ const styles = StyleSheet.create({
     height: '51%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: 'auto',
+    marginTop: 170,
     marginBottom: 'auto',
     backgroundColor: 'white',
     borderTopLeftRadius: 22,
@@ -116,8 +114,8 @@ const CheckOut = ({ route }) => {
             </View>
           </View>
         </View>
-        <Text style={tailwind('text-center pt-3')}>Maklumat Check-Out</Text>
-        <Text style={tailwind('text-left pl-3 pt-3 text-xs text-gray-700')}>
+        <Text style={tailwind('text-center pt-5')}>Maklumat Check-In</Text>
+        <Text style={tailwind('text-left pl-3 pt-2 text-xs text-gray-700')}>
           Lokasi
         </Text>
         <Text style={tailwind('text-left pl-3 text-sm text-black')}>
@@ -125,7 +123,7 @@ const CheckOut = ({ route }) => {
         </Text>
         <View style={tailwind('flex flex-row justify-between')}>
           <View>
-            <Text style={tailwind('text-left pl-3 pt-5 text-xs text-gray-700')}>
+            <Text style={tailwind('text-left pl-3 pt-3 text-xs text-gray-700')}>
               Nama
             </Text>
             <Text style={tailwind('text-left pl-3 text-sm text-black')}>
@@ -135,7 +133,7 @@ const CheckOut = ({ route }) => {
 
           <View>
             <Text
-              style={tailwind('text-right pr-3 pt-5 text-xs text-gray-700')}
+              style={tailwind('text-right pr-3 pt-3 text-xs text-gray-700')}
             >
               E-mail
             </Text>
@@ -146,7 +144,7 @@ const CheckOut = ({ route }) => {
         </View>
         <View style={tailwind('flex flex-row justify-between')}>
           <View>
-            <Text style={tailwind('text-left pl-3 pt-5 text-xs text-gray-700')}>
+            <Text style={tailwind('text-left pl-3 pt-3 text-xs text-gray-700')}>
               Tarikh
             </Text>
             <Text style={tailwind('text-left pl-3 text-sm text-black')}>
@@ -157,7 +155,7 @@ const CheckOut = ({ route }) => {
           </View>
           <View>
             <Text
-              style={tailwind('text-right pr-3 pt-5 text-xs text-gray-700')}
+              style={tailwind('text-right pr-3 pt-3 text-xs text-gray-700')}
             >
               Masa
             </Text>
@@ -169,11 +167,13 @@ const CheckOut = ({ route }) => {
           </View>
         </View>
 
-        <View style={tailwind('flex flex-row justify-between mt-4 mb-2')}>
+        <View
+          style={tailwind('flex flex-row justify-around mt-4 pb-3 bg-white')}
+        >
           <View
             style={[
-              tailwind('ml-2 rounded-lg h-12  w-6/12 '),
-              { backgroundColor: '#23a31c' },
+              tailwind('ml-2 rounded-lg h-12  w-5/12 '),
+              { backgroundColor: '#11610c' },
             ]}
           >
             <Text style={tailwind('text-center text-xs pt-1 text-white')}>
@@ -186,21 +186,25 @@ const CheckOut = ({ route }) => {
           <View
             style={[
               tailwind('mr-2 rounded-lg h-12 w-5/12 bg-white '),
-              { borderWidth: 1, borderColor: 'gray' },
+              {
+                borderWidth: 1,
+                borderColor: '#d6ded5',
+                backgroundColor: '#FDD875',
+              },
             ]}
           >
-            <Text style={tailwind('text-center text-xs pt-1 text-black')}>
+            <Text style={tailwind('text-center text-xs pt-1 text-gray-700')}>
               Status Vaksinasi
             </Text>
 
             <Text style={tailwind('text-center text-black')}>
-              Not Vaccinated
+              Fully Vaccinated
             </Text>
           </View>
         </View>
         <View
           style={[
-            tailwind('bg-gray-100 h-14 border-gray-300'),
+            tailwind('bg-gray-100 h-14 border-gray-300 pb-2'),
             { borderBottomRightRadius: 22, borderBottomLeftRadius: 22 },
             { borderTopWidth: 1 },
           ]}

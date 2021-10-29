@@ -15,11 +15,13 @@ const initialState = {
     certificateHospitalName: 'Hospital Pulau Piang',
     dose1Date: '2021/1/1',
     dose2Date: '2021/1/1',
+    pcrDate: '2021/1/1',
     dose1Batch: 'dose1Batch',
     dose2Batch: 'dose2Batch',
     vaccineManufacturer: 'COVID-19 Vaccine AstraZeneca Solution for Injection',
     vaccineFaciality: 'World Trade Centere Kuala Lumpur (Station 3)',
   },
+  activeRouteStack: 'main',
 }
 
 // ------------------------------------
@@ -43,11 +45,15 @@ const appSlice = createSlice({
       state.user.vaccineFaciality = payload.vaccineFaciality
       state.user.dose1Batch = payload.dose1Batch
       state.user.dose2Batch = payload.dose2Batch
+      state.user.pcrDate = payload.pcrDate
+    },
+    setRouteStack: (state, { payload }) => {
+      state.activeRouteStack = payload
     },
   },
 })
 
 export const { action } = appSlice
-export const { setupUser } = appSlice.actions
+export const { setupUser, setRouteStack } = appSlice.actions
 
 export default appSlice.reducer

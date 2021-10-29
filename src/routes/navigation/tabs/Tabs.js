@@ -4,14 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import { colors } from 'theme'
 
-// stack navigators
-import Svg from 'components/Svg'
-import {
-  HomeNavigator,
-  CheckInNavigator,
-  StaticsNavigator,
-  ProfileNavigator,
-} from '../stacks'
+import Home from 'scenes/home'
+import Profile from 'scenes/profile'
+import Statics from 'scenes/statics'
+import CheckIn from 'scenes/check-in'
 
 const Tab = createBottomTabNavigator()
 const barcodebIcon = require('./barcodeb.png')
@@ -76,10 +72,10 @@ const TabNavigator = () => (
     initialRouteName="Home"
     swipeEnabled={false}
   >
-    <Tab.Screen name="Home" component={HomeNavigator} />
-    <Tab.Screen name="CheckIn" component={CheckInNavigator} />
-    <Tab.Screen name="Statics" component={StaticsNavigator} />
-    <Tab.Screen name="Profile" component={ProfileNavigator} />
+    <Tab.Screen name="Home" component={Home} />
+    <Tab.Screen name="CheckIn" component={CheckIn} />
+    <Tab.Screen name="Statics" component={Statics} />
+    <Tab.Screen name="Profile" component={Profile} />
   </Tab.Navigator>
 )
 
