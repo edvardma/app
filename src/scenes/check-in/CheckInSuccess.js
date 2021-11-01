@@ -1,5 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, View, StatusBar, Image } from 'react-native'
+import {
+  StyleSheet, Text, View, ScrollView, Image,
+} from 'react-native'
 import { colors, fonts } from 'theme'
 import tailwind from 'tailwind-rn'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
@@ -9,20 +11,16 @@ import Button from 'components/Button'
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
-    flexDirection: 'column',
     backgroundColor: colors.gray,
   },
   container: {
     width: '95%',
-    height: '51%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: 100,
-    marginBottom: 'auto',
+    marginTop: 50,
+    marginBottom: 100,
     backgroundColor: 'white',
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
+    borderRadius: 22,
   },
   containerHeader: {
     height: '30%',
@@ -47,8 +45,9 @@ const CheckInSuccess = ({ route, navigation }) => {
   const { name, email } = useSelector((state) => state.app.user)
   return (
     <>
-      <View style={styles.root}>
+      <ScrollView style={styles.root}>
         <View style={styles.container}>
+
           <View style={[styles.containerHeader, tailwind('bg-blue-500')]}>
             <View
               style={[
@@ -242,7 +241,7 @@ const CheckInSuccess = ({ route, navigation }) => {
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
       <View style={tailwind('absolute bottom-0 w-full bg-white')}>
         <Button
           title="Check-Out"

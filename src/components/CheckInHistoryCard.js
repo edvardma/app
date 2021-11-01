@@ -1,5 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import {
+  StyleSheet, Text, View, TouchableOpacity,
+} from 'react-native'
 import tailwind from 'tailwind-rn'
 import Svg from 'components/Svg'
 import Moment from 'react-moment'
@@ -35,18 +37,16 @@ const CheckInHistoryCard = ({
         <View
           style={[
             { backgroundColor: 'white', height: checkedOut ? 130 : 150 },
-            tailwind('flex flex-row items-center pt-3 rounded-md p-3'),
+            tailwind('w-full flex flex-row items-center pt-3 rounded-md px-3'),
           ]}
         >
           <Svg name="shopPop" height="80" width="60" />
-          <View style={tailwind('flex flex-col content-center mt-1')}>
-            <TouchableOpacity onPress={goToHistory}>
-              <View style={tailwind('flex flex-row justify-end ')}>
-                <Text style={tailwind('text-blue-600 text-xs mr-4')}>
-                  History
-                </Text>
-              </View>
-            </TouchableOpacity>
+          <View style={tailwind('w-10/12 flex flex-col content-center mt-1 ')}>
+            <View style={tailwind('absolute right-1')}>
+              <Text onPress={goToHistory} style={tailwind('text-blue-600 text-xs ')}>
+                History
+              </Text>
+            </View>
             <View style={tailwind('flex flex-row justify-start')}>
               <Text style={tailwind('text-black text-xs pl-2')}>
                 Last Check-in

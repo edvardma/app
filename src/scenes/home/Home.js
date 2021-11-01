@@ -135,7 +135,7 @@ const Home = () => {
               </View>
             </View>
           </View>
-          <View style={[tailwind('w-11/12 self-center mt-8 bg-white h-10')]}>
+          <View style={[tailwind('w-11/12 self-center mt-4 bg-white h-10')]}>
             <View style={tailwind('flex flex-row justify-around ')}>
               <TouchableOpacity
                 onPress={() => setActiveTab(0)}
@@ -149,7 +149,7 @@ const Home = () => {
                   }),
                 }}
               >
-                <Text style={{ textAlign: 'center', paddingBottom: 11 }}>
+                <Text style={{ textAlign: 'center', paddingBottom: 11, fontWeight: !activeTab ? 'bold' : 'normal' }}>
                   Things to know
                 </Text>
               </TouchableOpacity>
@@ -165,19 +165,17 @@ const Home = () => {
                   }),
                 }}
               >
-                <Text style={{ textAlign: 'center', paddingBottom: 11 }}>
+                <Text style={{ textAlign: 'center', paddingBottom: 11, fontWeight: activeTab ? 'bold' : 'normal' }}>
                   Things to do
                 </Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[tailwind('w-11/12 self-center mt-8 bg-white ')]}>
-            <View style={tailwind('flex flex-row justify-start p-5')}>
+          <View style={[tailwind('w-11/12 self-center mt-4 bg-white ')]}>
+            <View style={tailwind('flex flex-row justify-start p-2')}>
               <Avatar
                 bg="green.500"
-                source={{
-                  uri: 'https://pbs.twimg.com/profile_images/1352844693151731713/HKO7cnlW_400x400.jpg',
-                }}
+                source={require('./img2.png')}
               >
                 SS
               </Avatar>
@@ -204,20 +202,18 @@ const Home = () => {
             </View>
             <Image
               width={
-                Dimensions.get('window').width -
-                Dimensions.get('window').width / 12
+                Dimensions.get('window').width
+                - Dimensions.get('window').width / 12
               } // height will be calculated automatically
               source={require('./delta.jpg')}
             />
           </View>
 
           <View style={[tailwind('w-11/12 self-center mt-8 bg-white ')]}>
-            <View style={tailwind('flex flex-row justify-start p-5')}>
+            <View style={tailwind('flex flex-row justify-start p-3')}>
               <Avatar
                 bg="green.500"
-                source={{
-                  uri: 'https://pbs.twimg.com/profile_images/1352844693151731713/HKO7cnlW_400x400.jpg',
-                }}
+                source={require('./img2.png')}
               >
                 SS
               </Avatar>
@@ -244,8 +240,8 @@ const Home = () => {
             </View>
             <Image
               width={
-                Dimensions.get('window').width -
-                Dimensions.get('window').width / 12
+                Dimensions.get('window').width
+                - Dimensions.get('window').width / 12
               } // height will be calculated automatically
               source={require('./delta.jpg')}
             />

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { TouchableOpacity, View, Dimensions, Image } from 'react-native'
+import {
+  TouchableOpacity, View, Dimensions, Image,
+} from 'react-native'
 import Button from 'components/Button'
 import { useDispatch } from 'react-redux'
 import { saveScanned } from 'slices/checkin.slice'
@@ -14,10 +16,11 @@ const Scan = ({ navigation }) => {
   const [scanned, setScanned] = useState(false)
   const [scanner, setScanner] = useState(false)
   const [flash, setFlash] = useState('off')
+
   useEffect(() => {
-    ;(async () => {
-      const { _status } = await Camera.getCameraPermissionsAsync()
-      setHasPermission(_status === 'granted')
+    (async () => {
+      const { status } = await Camera.requestPermissionsAsync()
+      setHasPermission(status === 'granted')
     })()
   }, [])
 
@@ -63,43 +66,45 @@ const Scan = ({ navigation }) => {
         shadowRadius: 60,
       }}
     >
-      <Camera
-        barCodeScannerSettings={{
-          barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
-        }}
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        ratio="16:9"
-        flashMode={flash}
-        style={{
-          marginTop: 10,
-          height,
-          width: '100%',
-        }}
-      >
-        <TouchableOpacity
-          onPress={() => {
-            flash === 'off' ? setFlash('torch') : setFlash('off')
+      { hasPermission ? (
+        <Camera
+          barCodeScannerSettings={{
+            barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
           }}
-          style={[
-            {
-              position: 'absolute',
-              top: 20,
-              right: 20,
-            },
-            tailwind('bg-gray-600 bg-opacity-60'),
-          ]}
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          ratio="16:9"
+          flashMode={flash}
+          style={{
+            marginTop: 10,
+            height,
+            width: '100%',
+          }}
         >
-          <Image
-            source={require('./toggle_torch.png')}
-            style={{
-              resizeMode: 'cover',
-              padding: 20,
-              width: 50,
-              height: 50,
+          <TouchableOpacity
+            onPress={() => {
+              flash === 'off' ? setFlash('torch') : setFlash('off')
             }}
-          />
-        </TouchableOpacity>
-      </Camera>
+            style={[
+              {
+                position: 'absolute',
+                top: 20,
+                right: 20,
+              },
+              tailwind('bg-gray-600 bg-opacity-60'),
+            ]}
+          >
+            <Image
+              source={require('./toggle_torch.png')}
+              style={{
+                resizeMode: 'cover',
+                padding: 20,
+                width: 50,
+                height: 50,
+              }}
+            />
+          </TouchableOpacity>
+        </Camera>
+      ) : null}
     </View>
   )
 }
