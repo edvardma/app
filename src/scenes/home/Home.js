@@ -11,7 +11,7 @@ import {
   SafeAreaView,
 } from 'react-native'
 import tailwind from 'tailwind-rn'
-import { colors } from 'theme'
+import { fonts, colors } from 'theme'
 import Svg from 'components/Svg'
 import { Avatar } from 'native-base'
 import HomePageActionSheet from 'components/HomePageActionSheet'
@@ -22,7 +22,7 @@ import HeaderTitle from 'components/HeaderTitle'
 
 const styles = StyleSheet.create({
   topContainer: {
-    height: 200,
+    height: 150,
     backgroundColor: colors.lightBlue,
   },
 })
@@ -49,16 +49,16 @@ const Home = () => {
         scrollEventThrottle={5}
       >
         <View style={[styles.topContainer]} />
-        <View style={[tailwind('w-full -mt-60 flex')]}>
+        <View style={[tailwind('w-full flex'), { marginTop: -190 }]}>
           <View style={[tailwind('self-center w-11/12')]}>
-            <View style={[tailwind('bg-white h-72 w-full mt-12 rounded-md')]}>
+            <View style={[tailwind('bg-white w-full mt-12 rounded-md')]}>
               <View style={tailwind('flex flex-row mt-4')}>
                 <TouchableOpacity style={tailwind('w-4/12')}>
                   <Svg
                     style={{ marginRight: 'auto', marginLeft: 'auto' }}
                     name={icons[0].icon}
                   />
-                  <Text style={tailwind('text-center text-xs font-thin pt-1')}>
+                  <Text style={[tailwind('text-center text-xs font-thin pt-1'), { fontFamily: fonts.Avenir.regular }]}>
                     COVID-19 Status
                   </Text>
                 </TouchableOpacity>
@@ -67,7 +67,7 @@ const Home = () => {
                     style={{ marginRight: 'auto', marginLeft: 'auto' }}
                     name={icons[1].icon}
                   />
-                  <Text style={tailwind('text-center text-xs font-thin pt-1')}>
+                  <Text style={[tailwind('text-center text-xs font-thin pt-1'), { fontFamily: fonts.Avenir.regular }]}>
                     COVID-19 Vaccination
                   </Text>
                 </TouchableOpacity>
@@ -76,18 +76,18 @@ const Home = () => {
                     style={{ marginRight: 'auto', marginLeft: 'auto' }}
                     name={icons[2].icon}
                   />
-                  <Text style={tailwind('text-center text-xs font-thin pt-1')}>
+                  <Text style={[tailwind('text-center text-xs font-thin pt-1'), { fontFamily: fonts.Avenir.regular }]}>
                     COVID-19 Self Test
                   </Text>
                 </TouchableOpacity>
               </View>
-              <View style={tailwind('flex flex-row mt-8')}>
+              <View style={tailwind('flex flex-row mt-4')}>
                 <TouchableOpacity style={tailwind('w-4/12')}>
                   <Svg
                     style={{ marginRight: 'auto', marginLeft: 'auto' }}
                     name={icons[3].icon}
                   />
-                  <Text style={tailwind('text-center text-xs font-thin pt-1')}>
+                  <Text style={[tailwind('text-center text-xs font-thin pt-1'), { fontFamily: fonts.Avenir.regular }]}>
                     Digital Health
                   </Text>
                 </TouchableOpacity>
@@ -96,7 +96,7 @@ const Home = () => {
                     style={{ marginRight: 'auto', marginLeft: 'auto' }}
                     name={icons[4].icon}
                   />
-                  <Text style={tailwind('text-center text-xs font-thin pt-1')}>
+                  <Text style={[tailwind('text-center text-xs font-thin pt-1'), { fontFamily: fonts.Avenir.regular }]}>
                     Hotspot
                   </Text>
                 </TouchableOpacity>
@@ -105,18 +105,18 @@ const Home = () => {
                     style={{ marginRight: 'auto', marginLeft: 'auto' }}
                     name={icons[5].icon}
                   />
-                  <Text style={tailwind('text-center text-xs font-thin pt-1')}>
+                  <Text style={[tailwind('text-center text-xs font-thin pt-1'), { fontFamily: fonts.Avenir.regular }]}>
                     Helpdesk
                   </Text>
                 </TouchableOpacity>
               </View>
-              <View style={tailwind('flex flex-row mt-8')}>
+              <View style={tailwind('flex flex-row mb-4 mt-4')}>
                 <TouchableOpacity style={tailwind('w-4/12')}>
                   <Svg
                     style={{ marginRight: 'auto', marginLeft: 'auto' }}
                     name={icons[6].icon}
                   />
-                  <Text style={tailwind('text-center text-xs font-thin pt-1')}>
+                  <Text style={[tailwind('text-center text-xs font-thin pt-1'), { fontFamily: fonts.Avenir.regular }]}>
                     Manage Dependents
                   </Text>
                 </TouchableOpacity>
@@ -125,7 +125,7 @@ const Home = () => {
                     style={{ marginRight: 'auto', marginLeft: 'auto' }}
                     name={icons[7].icon}
                   />
-                  <Text style={tailwind('text-center text-xs font-thin pt-1')}>
+                  <Text style={[tailwind('text-center text-xs font-thin pt-1'), { fontFamily: fonts.Avenir.regular }]}>
                     Health Facilities
                   </Text>
                 </TouchableOpacity>
@@ -141,7 +141,7 @@ const Home = () => {
                 onPress={() => setActiveTab(0)}
                 style={{
                   width: '50%',
-                  paddingTop: 8,
+                  paddingTop: 9,
                   ...(!activeTab && {
                     borderBottomWidth: 1,
                     borderBottomColor: 'red',
@@ -149,7 +149,7 @@ const Home = () => {
                   }),
                 }}
               >
-                <Text style={{ textAlign: 'center', paddingBottom: 11, fontWeight: !activeTab ? 'bold' : 'normal' }}>
+                <Text style={{ fontFamily: fonts.Avenir.regular, textAlign: 'center', paddingBottom: 11, fontWeight: !activeTab ? 'bold' : 'normal' }}>
                   Things to know
                 </Text>
               </TouchableOpacity>
@@ -157,7 +157,7 @@ const Home = () => {
                 onPress={() => setActiveTab(1)}
                 style={{
                   width: '50%',
-                  paddingTop: 8,
+                  paddingTop: 9,
                   ...(activeTab && {
                     borderBottomWidth: 1,
                     borderBottomColor: 'red',
@@ -165,7 +165,7 @@ const Home = () => {
                   }),
                 }}
               >
-                <Text style={{ textAlign: 'center', paddingBottom: 11, fontWeight: activeTab ? 'bold' : 'normal' }}>
+                <Text style={{ fontFamily: fonts.Avenir.regular, textAlign: 'center', paddingBottom: 11, fontWeight: activeTab ? 'bold' : 'normal' }}>
                   Things to do
                 </Text>
               </TouchableOpacity>

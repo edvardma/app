@@ -13,7 +13,7 @@ import RefreshStatusButton from 'components/RefreshStatusButton'
 
 const styles = StyleSheet.create({
   topContainer: {
-    height: 200,
+    height: 245,
     backgroundColor: colors.lightBlue,
   },
 })
@@ -52,7 +52,7 @@ const Details = ({ navigation }) => {
       </View>
       <ScrollView>
         <View style={[styles.topContainer]} />
-        <View style={[tailwind('w-full -mt-48 flex')]}>
+        <View style={[tailwind('w-full  flex'), { marginTop: -210 }]}>
           <View style={[tailwind('self-center ')]}>
             <Image
               source={require('./checkin-icon.png')}
@@ -71,7 +71,7 @@ const Details = ({ navigation }) => {
         <View style={tailwind('w-full flex flex-col pb-24')}>
           <CheckInCard
             icon={<Svg name="virus" width={35} height={35} />}
-            bgColor="#5caaff"
+            bgColor="#62b4ec"
           >
             <View style={tailwind('flex flex-col content-center')}>
               <Text style={tailwind('text-white  pl-2 ')}>

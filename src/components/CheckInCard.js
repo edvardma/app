@@ -20,7 +20,7 @@ const CheckInCard = ({ bgColor, icon, children }) => (
     <View style={styles.root}>
       <View
         style={[
-          { backgroundColor: bgColor ?? ' white', height: 65 },
+          { backgroundColor: bgColor ?? ' white', height: 80 },
           tailwind(
             'flex flex-row pt-3 content-center items-center rounded-md p-3',
           ),

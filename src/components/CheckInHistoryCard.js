@@ -18,8 +18,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    paddingTop: 21,
+    paddingTop: 30,
+    paddingBottom: 30,
+
   },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
+
+    elevation: 2,
+  },
+
 })
 
 const CheckInHistoryCard = ({
@@ -33,27 +47,27 @@ const CheckInHistoryCard = ({
   const dispatch = useDispatch()
   return (
     <>
-      <View style={styles.root}>
+      <View style={[styles.root, styles.shadow]}>
         <View
           style={[
-            { backgroundColor: 'white', height: checkedOut ? 130 : 150 },
-            tailwind('w-full flex flex-row items-center pt-3 rounded-md px-3'),
+            { backgroundColor: 'white' },
+            tailwind('w-full flex flex-row items-center pt-5 pb-6 rounded-md px-3'),
           ]}
         >
           <Svg name="shopPop" height="80" width="60" />
           <View style={tailwind('w-10/12 flex flex-col content-center mt-1 ')}>
-            <View style={tailwind('absolute right-1')}>
-              <Text onPress={goToHistory} style={tailwind('text-blue-600 text-xs ')}>
+            <TouchableOpacity onPress={goToHistory} style={tailwind('absolute -mt-4 right-1')}>
+              <Text style={tailwind('text-blue-600 text-xs ')}>
                 History
               </Text>
-            </View>
+            </TouchableOpacity>
             <View style={tailwind('flex flex-row justify-start')}>
               <Text style={tailwind('text-black text-xs pl-2')}>
                 Last Check-in
               </Text>
             </View>
             <Text
-              style={tailwind('text-black text-lg pl-2 capitalize w-10/12')}
+              style={tailwind('text-black uppercase pl-2  w-10/12')}
             >
               {location}
             </Text>
@@ -63,7 +77,7 @@ const CheckInHistoryCard = ({
               </Moment>
             </Text>
             {!checkedOut ? (
-              <View style={tailwind('w-72 pl-2 pt-2 pb-4')}>
+              <View style={tailwind('w-full pl-2 pt-2 ')}>
                 <Button
                   colorScheme="darkBlue"
                   size="md"
@@ -79,11 +93,13 @@ const CheckInHistoryCard = ({
             ) : null}
           </View>
           {checkedOut ? (
-            <Text
-              style={tailwind('text-black font-bold absolute bottom-2 right-2')}
-            >
-              Checked-out
-            </Text>
+            <View style={tailwind('absolute bottom-2 right-2')}>
+              <Text
+                style={tailwind('text-black font-bold ')}
+              >
+                Checked-out
+              </Text>
+            </View>
           ) : null}
         </View>
       </View>

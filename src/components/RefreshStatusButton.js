@@ -1,38 +1,39 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { fonts, colors } from 'theme'
 import { Ionicons } from '@expo/vector-icons'
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 12,
-    color: 'white',
-    fontFamily: fonts.Avenir.regular,
-    paddingRight: 9,
-  },
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    backgroundColor: colors.lightBlue,
-  },
-})
-
-const RefreshStatusButton = () => (
-  <>
-    <View style={styles.container}>
-      <Ionicons
-        style={{
-          paddingRight: 8,
-        }}
-        name="md-sync"
-        size={16}
-        color="white"
-      />
-      <Text style={styles.title}>Refresh Status</Text>
-    </View>
-  </>
-)
+const RefreshStatusButton = ({ big }) => {
+  const styles = StyleSheet.create({
+    title: {
+      fontSize: big ? 14 : 12,
+      color: 'white',
+      fontFamily: fonts.Avenir.black,
+      paddingRight: 9,
+    },
+    container: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      alignItems: 'center',
+      backgroundColor: colors.lightBlue,
+    },
+  })
+  return (
+    <>
+      <TouchableOpacity style={styles.container}>
+        <Ionicons
+          style={{
+            paddingRight: 8,
+          }}
+          name="md-sync"
+          size={big ? 20 : 16}
+          color="white"
+        />
+        <Text style={styles.title}>Refresh Status</Text>
+      </TouchableOpacity>
+    </>
+  )
+}
 
 export default RefreshStatusButton

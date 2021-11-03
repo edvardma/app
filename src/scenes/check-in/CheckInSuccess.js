@@ -170,11 +170,11 @@ const CheckInSuccess = ({ route, navigation }) => {
           </View>
 
           <View
-            style={tailwind('flex flex-row justify-around mt-4 pb-3 bg-white')}
+            style={tailwind('flex flex-row items-center  content-center justify-around mt-4 pb-3 bg-white')}
           >
             <View
               style={[
-                tailwind('ml-2 rounded-lg h-12  w-5/12 '),
+                tailwind('ml-2 py-2 rounded-lg  w-5/12 '),
                 { backgroundColor: '#11610c' },
               ]}
             >
@@ -187,7 +187,7 @@ const CheckInSuccess = ({ route, navigation }) => {
 
             <View
               style={[
-                tailwind('mr-2 rounded-lg h-12 w-5/12  '),
+                tailwind('mr-2 py-2 rounded-lg  w-5/12  '),
                 {
                   borderWidth: 1,
                   borderColor: '#d6ded5',
@@ -206,15 +206,15 @@ const CheckInSuccess = ({ route, navigation }) => {
           </View>
           <View
             style={[
-              tailwind('bg-gray-100 h-14 border-gray-300 pb-2'),
-              { borderBottomRightRadius: 22, borderBottomLeftRadius: 22 },
+              tailwind('bg-gray-100 h-16 border-gray-300 pb-2'),
+              { borderBottomRightRadius: 11, borderBottomLeftRadius: 11 },
               { borderTopWidth: 1 },
             ]}
           >
             <View style={tailwind('flex flex-row')}>
               <View style={tailwind('pl-4 w-9/12')}>
                 <Text style={tailwind('text-xs text-black mt-2')}>
-                  Sla tunjukkan tiket ini kepadda pemilik permis apabila diminta
+                  This is the QR code for your MySejahtera profile. Please show this to authorities when requested.
                 </Text>
               </View>
               <View style={tailwind('pr-4 w-2/12 mt-2')}>

@@ -73,8 +73,8 @@ const TabNavigator = () => (
     swipeEnabled={false}
   >
     <Tab.Screen name="Home" component={Home} />
-    <Tab.Screen name="CheckIn" component={CheckIn} />
     <Tab.Screen name="Statics" component={Statics} />
+    <Tab.Screen name="CheckIn" component={CheckIn} />
     <Tab.Screen name="Profile" component={Profile} />
   </Tab.Navigator>
 )

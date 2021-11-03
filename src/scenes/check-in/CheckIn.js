@@ -14,7 +14,7 @@ import RefreshStatusButton from 'components/RefreshStatusButton'
 
 const styles = StyleSheet.create({
   topContainer: {
-    height: 200,
+    height: 245,
     backgroundColor: colors.lightBlue,
   },
 })
@@ -31,21 +31,21 @@ const Details = ({ navigation }) => {
   }
   return (
     <>
-      <View style={tailwind('flex flex-row justify-between')}>
+      <View style={[tailwind('flex flex-row justify-between'), { backgroundColor: colors.lightBlue }]}>
         <HeaderTitle title="Check-in" />
-        <RefreshStatusButton />
+        <RefreshStatusButton big />
       </View>
       <ScrollView>
         <View style={[styles.topContainer]} />
-        <View style={[tailwind('w-full -mt-48 flex')]}>
+        <View style={[tailwind('w-full  flex'), { marginTop: -225 }]}>
           <View style={[tailwind('self-center ')]}>
             <Image
               source={require('./checkin-icon.png')}
               style={{ resizeMode: 'cover', width: 120, height: 120 }}
             />
           </View>
-          <View style={tailwind('pb-12 ')}>
-            <Text style={tailwind('text-white font-bold pt-3 self-center')}>
+          <View style={tailwind('pb-12 pt-2')}>
+            <Text style={tailwind('text-white text-xl font-bold pb-1 pt-2 self-center')}>
               {name}
             </Text>
             <Text style={tailwind('text-white self-center')}>
@@ -56,7 +56,7 @@ const Details = ({ navigation }) => {
         <View style={tailwind('w-full flex flex-col pb-24')}>
           <CheckInCard
             icon={<Svg name="virus" width={35} height={35} />}
-            bgColor="#5caaff"
+            bgColor="#62b4ec"
           >
             <View style={tailwind('flex flex-col content-center')}>
               <Text style={tailwind('text-white  pl-2 ')}>
@@ -103,7 +103,7 @@ const Details = ({ navigation }) => {
         <Button
           title="Check-in"
           color="white"
-          style={tailwind('mx-5 my-3 w-11/12')}
+          style={tailwind('mx-5 mt-4 mb-3 w-11/12')}
           backgroundColor={colors.lightBlue}
           onPress={async () => {
             navigation.navigate('Scan')

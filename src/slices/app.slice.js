@@ -21,6 +21,7 @@ const initialState = {
     vaccineManufacturer: 'COVID-19 Vaccine AstraZeneca Solution for Injection',
     vaccineFaciality: 'World Trade Centere Kuala Lumpur (Station 3)',
   },
+  profileRefreshDate: '2021/1/1',
   activeRouteStack: 'main',
 }
 
@@ -50,10 +51,13 @@ const appSlice = createSlice({
     setRouteStack: (state, { payload }) => {
       state.activeRouteStack = payload
     },
+    updateProfileRefreshDate: (state) => {
+      state.profileRefreshDate = new Date()
+    },
   },
 })
 
 export const { action } = appSlice
-export const { setupUser, setRouteStack } = appSlice.actions
+export const { setupUser, setRouteStack, updateProfileRefreshDate } = appSlice.actions
 
 export default appSlice.reducer

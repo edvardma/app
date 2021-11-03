@@ -19,6 +19,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#e4e8f0',
   },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
+  },
 })
 
 const ScansHistory = ({ navigation }) => {
@@ -27,12 +38,12 @@ const ScansHistory = ({ navigation }) => {
   return (
     <View style={styles.root}>
       <StatusBar barStyle="light-content" />
-      <Alert w="94%" style={tailwind('mt-4 self-center')} status="info">
+      <Alert w="96%" style={tailwind('mt-2 self-center')} status="info">
         <Text style={tailwind('self-start text-xs italic text-green-800')}>
           Your check-in history will be removed if you logout or reinstall the
           application
         </Text>
-        <Text style={tailwind('self-start text-xs pt-2 italic text-green-800')}>
+        <Text style={tailwind('self-start text-xs pt-1 italic text-green-800')}>
           Check-out details will be displayed here. if you have not checked out,
           you can click on a past check-in to check-out accordingly
         </Text>
@@ -49,8 +60,9 @@ const ScansHistory = ({ navigation }) => {
             }}
             key={`history-${item.id}${item.type}`}
             style={[
-              { width: '90%' },
-              tailwind('bg-white rounded-sm h-14 mt-4'),
+              { width: '96%' },
+              tailwind('bg-white rounded-sm pb-3 pt-3 mt-2 flex flex-col justify-center'),
+              styles.shadow,
             ]}
           >
             <View style={tailwind('flex flex-row items-center')}>
