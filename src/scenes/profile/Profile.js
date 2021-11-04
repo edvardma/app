@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 /* eslint-disable object-curly-newline */
 import React, { useState, useEffect } from 'react'
@@ -13,7 +16,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import tailwind from 'tailwind-rn'
-import { colors } from 'theme'
+import { colors, fonts } from 'theme'
 import Svg from 'components/Svg'
 import { Avatar, Button } from 'native-base'
 import Moment from 'react-moment'
@@ -139,15 +142,15 @@ const Home = ({ navigation }) => {
               <View
                 style={tailwind('h-10 border border-gray-200 w-10 bg-gray-100 rounded-full text-center flex flex-row items-center justify-center')}
               >
-                <Text style={tailwind('text-center text-blue-500 font-bold')}>
+                <Text style={tailwind('text-center  text-blue-500 font-bold')}>
                   {name.split(' ').length ? name.split(' ')[0][0] + name.split(' ')[1][0] : name[0]}
                 </Text>
               </View>
             </TouchableOpacity>
 
             <View style={[tailwind('flex flex-col pl-2')]}>
-              <Text style={tailwind('pl-1 font-bold text-sm')}>{name}</Text>
-              <Text style={tailwind('pl-1 font-thin text-gray-700 text-sm')}>
+              <Text style={[tailwind('pl-1 font-bold'), { fontSize: 16 }]}>{name}</Text>
+              <Text style={[tailwind('pl-1 font-thin text-gray-700 '), { fontSize: 13 }]}>
                 Low Risk No Symptopm
               </Text>
             </View>
@@ -164,7 +167,7 @@ const Home = ({ navigation }) => {
               <Text style={tailwind('text-left  text-sm text-gray-700')}>
                 MySJ ID
               </Text>
-              <Text style={tailwind('text-right text-sm font-bold text-black')}>
+              <Text style={tailwind('text-right text-sm font-bold text-gray-900')}>
                 {email}
               </Text>
             </View>
@@ -173,7 +176,7 @@ const Home = ({ navigation }) => {
               <Text style={tailwind('text-left  text-sm   text-gray-700')}>
                 IC / Passport No
               </Text>
-              <Text style={tailwind('text-right text-sm font-bold  text-black')}>
+              <Text style={tailwind('text-right text-sm font-bold  text-gray-900')}>
                 {passportNumber}
               </Text>
             </View>
@@ -182,7 +185,7 @@ const Home = ({ navigation }) => {
               <Text style={tailwind('text-left  text-sm text-gray-700')}>
                 State
               </Text>
-              <Text style={tailwind('text-right text-sm font-bold  text-black')}>
+              <Text style={tailwind('text-right text-sm font-bold  text-gray-900')}>
                 {state}
               </Text>
             </View>
@@ -204,13 +207,17 @@ const Home = ({ navigation }) => {
                 Click to refresh your profile
               </Text>
             </View>
-            <TouchableOpacity
-              onPress={handleRefresh}
-              style={tailwind('rounded-xl bg-gray-200 flex-col justify-center flex pr-2 pl-2')}
+            <View
+              style={tailwind(' flex-col  justify-center flex    pr-2 pl-2')}
             >
-              <Text style={tailwind('text-xs text-center')}>Refresh
-              </Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleRefresh}
+                style={tailwind(' flex-col justify-center flex rounded-xl bg-gray-200 py-1 px-2')}
+              >
+                <Text style={tailwind('text-sm text-center')}>Refresh
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
           <View
             style={[
@@ -231,17 +238,17 @@ const Home = ({ navigation }) => {
             </Text>
             <View
               style={[
-                tailwind('flex flex-row mt-4 w-full  h-20 p-2'),
-              ], { backgroundColor: '#62b4ec' }}
+                tailwind('flex flex-row mt-4 w-full pt-2 pl-2 pr-2 pb-3'),
+                { backgroundColor: '#62b4ec' }]}
             >
               <View style={[tailwind('flex flex-col')]}>
                 <Text
-                  style={tailwind('text-left pl-2 font-bold text-xs text-white')}
+                  style={[tailwind('text-left pl-2 font-bold  text-white'), { fontSize: 10 }]}
                 >
                   Status Risiko COVID-19
                 </Text>
                 <Text
-                  style={tailwind('text-left pl-2 font-bold text-xs text-white')}
+                  style={[tailwind('text-left pl-2 font-bold  text-white'), { fontSize: 10 }]}
                 >
                   COVID-19 Risk Status
                 </Text>
@@ -256,14 +263,14 @@ const Home = ({ navigation }) => {
               </View>
 
               <Image
-                source={require('./mosti.png')}
+                source={require('./Lambang_Malaysia.png')}
                 style={{
                   resizeMode: 'contain',
                   position: 'absolute',
-                  top: 2,
+                  top: 10,
                   right: 5,
-                  width: 70,
-                  height: 90,
+                  width: 60,
+                  height: 60,
                 }}
               />
             </View>
@@ -335,8 +342,8 @@ const Home = ({ navigation }) => {
           </View>
           <View
             style={[
-              tailwind('bg-gray-200 h-16 w-11/12 border-gray-300 -mt-2 '),
-              { borderBottomRightRadius: 15, borderBottomLeftRadius: 15 },
+              tailwind('bg-gray-200 py-3 w-11/12 border-gray-300 -mt-2 '),
+              { borderBottomRightRadius: 8, borderBottomLeftRadius: 8 },
               { borderTopWidth: 1 },
               { marginLeft: 'auto', marginRight: 'auto' },
             ]}
@@ -374,17 +381,17 @@ const Home = ({ navigation }) => {
             style={[
               tailwind(' h-36 rounded-xl w-11/12 flex flex-row my-4'),
               { marginLeft: 'auto', marginRight: 'auto' },
-              { backgroundColor: '#699c4c' },
+              { backgroundColor: '#70ad46' },
             ]}
           >
             <View style={tailwind('flex flex-col w-7/12')}>
               <View
-                style={tailwind('w-11/12 h-7 bg-gray-200 rounded-full mt-2 ml-2')}
+                style={tailwind('w-11/12 h-7 bg-white rounded-xl mt-2 ml-2')}
               >
                 <Text
                   style={[
-                    { color: '#58843F' },
-                    tailwind('text-xs text-center font-bold pt-1 px-2'),
+                    { color: '#70ad46' },
+                    tailwind(' text-center font-bold pt-1 px-2'),
                   ]}
                 >
                   COVID-19 Negative
@@ -406,8 +413,8 @@ const Home = ({ navigation }) => {
                 style={{
                   resizeMode: 'cover',
                   position: 'absolute',
-                  width: 40,
-                  height: 40,
+                  width: 50,
+                  height: 50,
                   right: 8,
                   top: 8,
                 }}
@@ -465,14 +472,14 @@ const Home = ({ navigation }) => {
           <View
             style={{
               width: '95%',
-              height: 650,
-              backgroundColor: '#FDD875',
+              backgroundColor: '#fdd774',
               marginRight: 'auto',
               marginLeft: 'auto',
               borderWidth: 1,
               borderColor: '#3d3a3a',
               borderRadius: 50,
-              marginBottom: 150,
+              paddingBottom: 10,
+              marginBottom: 100,
             }}
           >
             <Text style={tailwind('text-center mt-16 font-bold text-xl')}>
@@ -488,21 +495,23 @@ const Home = ({ navigation }) => {
                 { marginLeft: 'auto', marginRight: 'auto', height: 2 },
               ]}
             />
-            <Text style={tailwind('text-center mt-1 text-lg')}>
-              {name.toUpperCase()}
-            </Text>
-            <Text style={tailwind('text-center mt-1 text-lg')}>
-              {passportNumber}
-            </Text>
-            <Text style={tailwind('text-center mt-1 text-lg')}>
-              {certificateHospitalName}
-            </Text>
+            <View style={[tailwind(' w-10/12'), { marginLeft: 'auto', marginRight: 'auto' }]}>
+              <Text style={tailwind('text-center mt-1 text-lg ')}>
+                {name.toUpperCase()}
+              </Text>
+              <Text style={tailwind('text-center mt-2 text-lg ')}>
+                {passportNumber}
+              </Text>
+              <Text style={tailwind('text-center mb-2 mt-1 text-lg ')}>
+                {certificateHospitalName}
+              </Text>
+            </View>
             <View
               style={{
                 width: '95%',
-                height: 150,
                 backgroundColor: 'rgba(255, 255, 255,0.6)',
                 marginRight: 'auto',
+                paddingBottom: 10,
                 marginLeft: 'auto',
                 borderRadius: 5,
               }}
@@ -511,20 +520,23 @@ const Home = ({ navigation }) => {
                 <Text style={tailwind('text-left font-bold text-sm')}>
                   Dose 1 :
                 </Text>
-                <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                <Text style={[tailwind('text-left text-gray-700 '), { fontFamily: fonts.Avenir.semiBold, fontSize: 13 }]}>
                   Date:{' '}
                   <Moment element={Text} format="DD-MMM-Y">
                     {dose1Date}
                   </Moment>
-                  11:48 AM
+                  {' '}11:48 AM
                 </Text>
-                <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                <Text style={[tailwind('text-left text-gray-700 '), { fontFamily: fonts.Avenir.semiBold, fontSize: 13 }]}>
+
                   Manufacturer: {vaccineManufacturer}
                 </Text>
-                <Text style={tailwind('text-left text-gray-700 text-sm')}>
-                  Facilitiey: {vaccineFaciality}
+                <Text style={[tailwind('text-left text-gray-700 '), { fontFamily: fonts.Avenir.semiBold, fontSize: 13 }]}>
+
+                  Facility: {vaccineFaciality}
                 </Text>
-                <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                <Text style={[tailwind('text-left text-gray-700 '), { fontFamily: fonts.Avenir.semiBold, fontSize: 13 }]}>
+
                   Batch: {dose1Batch}
                 </Text>
               </View>
@@ -532,11 +544,11 @@ const Home = ({ navigation }) => {
             <View
               style={{
                 width: '95%',
-                height: 150,
                 backgroundColor: 'rgba(255, 255, 255,0.6)',
                 marginRight: 'auto',
                 marginLeft: 'auto',
                 marginTop: 10,
+                paddingBottom: 10,
                 borderRadius: 5,
               }}
             >
@@ -544,30 +556,34 @@ const Home = ({ navigation }) => {
                 <Text style={tailwind('text-left font-bold text-sm')}>
                   Dose 2 :
                 </Text>
-                <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                <Text style={[tailwind('text-left text-gray-700 '), { fontFamily: fonts.Avenir.semiBold, fontSize: 13 }]}>
+
                   Date:{' '}
                   <Moment element={Text} format="DD-MMM-Y">
                     {dose2Date}
                   </Moment>
-                  01:48 PM
+                  {' '}01:48 PM
                 </Text>
-                <Text style={tailwind('text-left text-gray-700 text-sm')}>
-                  Manufacturer:{vaccineManufacturer}
+                <Text style={[tailwind('text-left text-gray-700 '), { fontFamily: fonts.Avenir.semiBold, fontSize: 13 }]}>
+
+                  Manufacturer: {vaccineManufacturer}
                 </Text>
-                <Text style={tailwind('text-left text-gray-700 text-sm')}>
-                  Facilitiey: {vaccineFaciality}
+                <Text style={[tailwind('text-left text-gray-700 '), { fontFamily: fonts.Avenir.semiBold, fontSize: 13 }]}>
+
+                  Facility: {vaccineFaciality}
                 </Text>
-                <Text style={tailwind('text-left text-gray-700 text-sm')}>
+                <Text style={[tailwind('text-left text-gray-700 '), { fontFamily: fonts.Avenir.semiBold, fontSize: 13 }]}>
+
                   Batch: {dose2Batch}
                 </Text>
               </View>
             </View>
             <View style={tailwind('flex flex-row mt-2 justify-center')}>
-              <View
+              <TouchableOpacity
                 style={{
                   width: 70,
                   height: 75,
-                  backgroundColor: 'rgba(255, 255, 255,0.6)',
+                  backgroundColor: 'white',
                   marginRight: 5,
                   borderWidth: 1,
                   borderColor: 'black',
@@ -588,15 +604,15 @@ const Home = ({ navigation }) => {
                 <Text style={tailwind('text-gray-700 mt-2 text-center text-xs')}>
                   Show QR
                 </Text>
-              </View>
-              <View
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={{
                   width: 70,
                   height: 75,
                   borderWidth: 1,
                   borderColor: 'black',
                   marginLeft: 5,
-                  backgroundColor: 'rgba(255, 255, 255,0.6)',
+                  backgroundColor: 'white',
                   borderRadius: 5,
                 }}
               >
@@ -614,7 +630,7 @@ const Home = ({ navigation }) => {
                 <Text style={tailwind('text-gray-700 mt-2 text-center text-xs')}>
                   Dwonload
                 </Text>
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>

@@ -13,7 +13,7 @@ import RefreshStatusButton from 'components/RefreshStatusButton'
 
 const styles = StyleSheet.create({
   topContainer: {
-    height: 245,
+    height: 200,
     backgroundColor: colors.lightBlue,
   },
 })
@@ -37,11 +37,11 @@ const Details = ({ navigation }) => {
         ]}
       >
         <TouchableOpacity>
-          <RefreshStatusButton />
+          <RefreshStatusButton notBold />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate('Home')}
-          style={tailwind('bg-gray-200 rounded-full')}
+          style={[tailwind('bg-white rounded-full'), { padding: 1 }]}
         >
           <Text
             style={[{ color: colors.lightBlue }, tailwind('text-xs  px-2')]}
@@ -52,15 +52,15 @@ const Details = ({ navigation }) => {
       </View>
       <ScrollView>
         <View style={[styles.topContainer]} />
-        <View style={[tailwind('w-full  flex'), { marginTop: -210 }]}>
+        <View style={[tailwind('w-full  flex'), { marginTop: -180 }]}>
           <View style={[tailwind('self-center ')]}>
             <Image
               source={require('./checkin-icon.png')}
-              style={{ resizeMode: 'cover', width: 120, height: 120 }}
+              style={{ resizeMode: 'cover', width: 100, height: 100 }}
             />
           </View>
-          <View style={tailwind('pb-12 ')}>
-            <Text style={tailwind('text-white font-bold pt-3 self-center')}>
+          <View style={tailwind('pb-8 ')}>
+            <Text style={tailwind('text-white font-bold text-xl pt-3 self-center')}>
               {name}
             </Text>
             <Text style={tailwind('text-white self-center')}>
@@ -90,7 +90,7 @@ const Details = ({ navigation }) => {
                 style={{ width: 35, height: 35 }}
               />
           )}
-            bgColor="#FDD875"
+            bgColor="#fdd774"
           >
             <View style={tailwind('flex flex-col content-center')}>
               <Text style={tailwind('text-black pl-2 ')}>

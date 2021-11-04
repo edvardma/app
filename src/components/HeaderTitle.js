@@ -7,7 +7,7 @@ const HeaderTitle = ({ title, center }) => {
   const styles = StyleSheet.create({
     title: {
       textAlign: center ? 'center' : 'left',
-      fontSize: center ? 19 : 28,
+      fontSize: center ? 19 : 30,
       color: 'white',
       fontFamily: fonts.Avenir.black,
       paddingLeft: center ? 0 : 15,

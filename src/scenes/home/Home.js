@@ -135,7 +135,7 @@ const Home = () => {
               </View>
             </View>
           </View>
-          <View style={[tailwind('w-11/12 self-center mt-4 bg-white h-10')]}>
+          <View style={[tailwind('w-11/12 self-center mt-4 rounded-md bg-white h-10')]}>
             <View style={tailwind('flex flex-row justify-around ')}>
               <TouchableOpacity
                 onPress={() => setActiveTab(0)}
@@ -171,7 +171,171 @@ const Home = () => {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[tailwind('w-11/12 self-center mt-4 bg-white ')]}>
+          <View style={[tailwind('w-11/12 self-center mt-4 rounded-md bg-white ')]}>
+            <View style={tailwind('flex flex-row justify-start p-2')}>
+              <Avatar
+                bg="green.500"
+                source={require('./img2.png')}
+              >
+                SS
+              </Avatar>
+
+              <View>
+                <Text style={tailwind('pl-2 font-thin text-sm')}>CPRC KKM</Text>
+                <Text style={tailwind('pl-2 font-thin text-xs text-gray-600 ')}>
+                  29 Sep 2021,10:20 AM
+                </Text>
+              </View>
+            </View>
+            <View style={tailwind('flex flex-row justify-start pl-5')}>
+              <View>
+                <Text style={tailwind('pl-1 text-gray-900 font-bold text-sm')}>
+                  Perkara yang perlu diberi perhatian selepas menerima suntikan dos penggalak
+                </Text>
+                <Text style={tailwind('pl-1 font-thin text-xs text-gray-800')}>
+                  Ikuti kami di:{' '}
+                  <Text style={tailwind('text-blue-600')}>
+                    http://www.infosihat.go.mt{' '}
+                  </Text>
+                </Text>
+              </View>
+            </View>
+            <Image
+              width={
+                Dimensions.get('window').width
+                - Dimensions.get('window').width / 12
+              } // height will be calculated automatically
+              source={require('./photo5771519251151174057.jpg')}
+            />
+          </View>
+          <View style={[tailwind('w-11/12 self-center mt-4 rounded-md bg-white ')]}>
+            <View style={tailwind('flex flex-row justify-start p-2')}>
+              <Avatar
+                bg="green.500"
+                source={require('./img2.png')}
+              >
+                SS
+              </Avatar>
+
+              <View>
+                <Text style={tailwind('pl-2 font-thin text-sm')}>CPRC KKM</Text>
+                <Text style={tailwind('pl-2 font-thin text-xs text-gray-600 ')}>
+                  29 Sep 2021,10:20 AM
+                </Text>
+              </View>
+            </View>
+            <View style={tailwind('flex flex-row justify-start pl-5')}>
+              <View>
+                <Text style={tailwind('pl-1 text-gray-900 font-bold text-sm')}>
+                  Perkara yang perlu diberi perhatian selepas menerima suntikan dos penggalak
+                </Text>
+                <Text style={tailwind('pl-1 font-thin text-xs text-gray-800')}>
+                  Ikuti kami di:{' '}
+                  <Text style={tailwind('text-blue-600')}>
+                    http://www.infosihat.go.mt{' '}
+                  </Text>
+                </Text>
+              </View>
+            </View>
+            <View style={tailwind('flex flex-row justify-start')}>
+              <Image
+                width={
+                Dimensions.get('window').width / 2
+                - Dimensions.get('window').width / 12
+              } // height will be calculated automatically
+                source={require('./photo5771519251151174060.jpg')}
+              />
+
+              <Image
+                width={
+                Dimensions.get('window').width / 2
+                - Dimensions.get('window').width / 12
+              } // height will be calculated automatically
+                source={require('./photo5771519251151174058.jpg')}
+              />
+            </View>
+          </View>
+          <View style={[tailwind('w-11/12 self-center mt-4 rounded-md bg-white ')]}>
+            <View style={tailwind('flex flex-row justify-start p-2')}>
+              <Avatar
+                bg="green.500"
+                source={require('./img2.png')}
+              >
+                SS
+              </Avatar>
+
+              <View>
+                <Text style={tailwind('pl-2 font-thin text-sm')}>CPRC KKM</Text>
+                <Text style={tailwind('pl-2 font-thin text-xs text-gray-600 ')}>
+                  29 Sep 2021,10:20 AM
+                </Text>
+              </View>
+            </View>
+            <View style={tailwind('flex flex-row justify-start pl-5')}>
+              <View>
+                <Text style={tailwind('pl-1 text-gray-900 font-bold text-sm')}>
+                  Pesanan sebleum menerima suntikan dos penggalak
+                </Text>
+                <Text style={tailwind('pl-1 font-thin text-xs text-gray-800')}>
+                  Ikuti kami di:{' '}
+                  <Text style={tailwind('text-blue-600')}>
+                    http://www.infosihat.go.mt{' '}
+                  </Text>
+                </Text>
+              </View>
+            </View>
+
+            <Image
+              width={
+                Dimensions.get('window').width
+                - Dimensions.get('window').width / 12
+              } // height will be calculated automatically
+              source={require('./photo5771519251151174056.jpg')}
+            />
+          </View>
+          <View style={[tailwind('w-11/12 self-center mt-4 rounded-md bg-white ')]}>
+            <View style={tailwind('flex flex-row justify-start p-2')}>
+              <Avatar
+                bg="green.500"
+                source={require('./img2.png')}
+              >
+                SS
+              </Avatar>
+
+              <View>
+                <Text style={tailwind('pl-2 font-thin text-sm')}>CPRC KKM</Text>
+                <Text style={tailwind('pl-2 font-thin text-xs text-gray-600 ')}>
+                  29 Sep 2021,10:20 AM
+                </Text>
+              </View>
+            </View>
+            <View style={tailwind('flex flex-row justify-start pl-5')}>
+              <View>
+                <Text style={tailwind('pl-1 text-gray-900 font-bold text-sm')}>
+                  Skim Peduli Kesihatan untuk Kumpulan B480 (PeKa B40)
+                </Text>
+                <Text style={tailwind('pl-1 font-thin text-xs text-gray-800')}>
+                  Terdapat 4 manafaat yang orang ramai dapat melalui PeKa B40
+                  antaranya saringan kesihatan bantuan alat oerubatan, insentif melengkaplan rawatan kanse dan insentif tambang pengankutan
+                </Text>
+                <Text style={tailwind('pl-1 font-thin text-xs text-gray-800')}>
+                  Ikuti kami di:{' '}
+                  <Text style={tailwind('text-blue-600')}>
+                    http://www.infosihat.go.mt{' '}
+                  </Text>
+                </Text>
+              </View>
+            </View>
+
+            <Image
+              width={
+                Dimensions.get('window').width
+                - Dimensions.get('window').width / 12
+              } // height will be calculated automatically
+              source={require('./photo5771519251151174059.jpg')}
+            />
+          </View>
+          <View style={[tailwind('w-11/12 self-center mt-4 rounded-md bg-white ')]}>
             <View style={tailwind('flex flex-row justify-start p-2')}>
               <Avatar
                 bg="green.500"
@@ -209,43 +373,6 @@ const Home = () => {
             />
           </View>
 
-          <View style={[tailwind('w-11/12 self-center mt-8 bg-white ')]}>
-            <View style={tailwind('flex flex-row justify-start p-3')}>
-              <Avatar
-                bg="green.500"
-                source={require('./img2.png')}
-              >
-                SS
-              </Avatar>
-
-              <View>
-                <Text style={tailwind('pl-2 font-thin text-sm')}>CPRC KKM</Text>
-                <Text style={tailwind('pl-2 font-thin text-xs text-gray-600 ')}>
-                  29 Sep 2021,10:20 AM
-                </Text>
-              </View>
-            </View>
-            <View style={tailwind('flex flex-row justify-start pl-5')}>
-              <View>
-                <Text style={tailwind('pl-1 font-thin text-sm')}>
-                  Varian Delta
-                </Text>
-                <Text style={tailwind('pl-1 font-thin text-xs text-gray-800')}>
-                  Ikuti kami di:{' '}
-                  <Text style={tailwind('text-blue-600')}>
-                    http://www.infosihat.go.mt{' '}
-                  </Text>
-                </Text>
-              </View>
-            </View>
-            <Image
-              width={
-                Dimensions.get('window').width
-                - Dimensions.get('window').width / 12
-              } // height will be calculated automatically
-              source={require('./delta.jpg')}
-            />
-          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

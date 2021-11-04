@@ -187,7 +187,7 @@ const CheckOut = ({ route }) => {
               {
                 borderWidth: 1,
                 borderColor: '#d6ded5',
-                backgroundColor: '#FDD875',
+                backgroundColor: '#fdd774',
               },
             ]}
           >

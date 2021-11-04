@@ -3,12 +3,12 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { fonts, colors } from 'theme'
 import { Ionicons } from '@expo/vector-icons'
 
-const RefreshStatusButton = ({ big }) => {
+const RefreshStatusButton = ({ big, notBold }) => {
   const styles = StyleSheet.create({
     title: {
       fontSize: big ? 14 : 12,
       color: 'white',
-      fontFamily: fonts.Avenir.black,
+      fontFamily: notBold ? fonts.Avenir.regular : fonts.Avenir.black,
       paddingRight: 9,
     },
     container: {

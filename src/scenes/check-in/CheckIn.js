@@ -75,7 +75,7 @@ const Details = ({ navigation }) => {
                 style={{ width: 35, height: 35 }}
               />
           )}
-            bgColor="#FDD875"
+            bgColor="#fdd774"
           >
             <View style={tailwind('flex flex-col content-center')}>
               <Text style={tailwind('text-black pl-2 ')}>
